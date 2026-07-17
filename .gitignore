@@ -1,0 +1,18 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Node (if you add package.json later)
+node_modules/
+
+# Python (if you add scripts later)
+__pycache__/
+*.pyc
+
+# Local test files
+tmp/

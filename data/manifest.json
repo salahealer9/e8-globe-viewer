@@ -1,0 +1,4032 @@
+{
+  "schema_version": "1.0",
+  "title": "E8 Lattice Alignment — v4.0 pre-registered confirmatory set",
+  "catalog": {
+    "name": "sites_energy_centers_157",
+    "n_sites": 157
+  },
+  "statistical_note": "Primary statistic: search-aware best-of-search RMS null (1000 trials per seed). BH-FDR applied at q=0.05 to the pre-registered 12-seed elite family; controls tested separately. Distance color bins are display conventions, not significance thresholds. The signal is statistically robust at the family level; the mechanism is unknown.",
+  "display_bins": {
+    "close": {
+      "label": "≤ 11 km",
+      "color_hint": "green"
+    },
+    "medium": {
+      "label": "11–15 km",
+      "color_hint": "yellow"
+    },
+    "far": {
+      "label": "> 15 km",
+      "color_hint": "red"
+    },
+    "note": "Display bins only. Not significance thresholds."
+  },
+  "bh": {
+    "q": 0.05,
+    "family_size": 12,
+    "n_rejected": 10,
+    "n_controls": 6
+  },
+  "provenance": {
+    "engine": "earthgrid-research (private)",
+    "engine_commit": "e8043564b5085ef689464bd5cc269bf171f2e010",
+    "engine_branch": "main",
+    "engine_tag": "precommit-v4-5-ge804356",
+    "engine_author": "Salah-Eddin Gherbi",
+    "engine_signing_key": "A91239ABCF512130",
+    "generator_script": "export_viewer_bundle.py",
+    "catalog_file": "sites_energy_centers_157.csv",
+    "catalog_sha256": "b1cdb2d01b5542c09588594cd346147beb5e7b9b031b646bb6fd91fdc8d755f1",
+    "ks_dir": "results_sacred_sites/sites_energy_centers_157/KS_test/v4",
+    "generated_utc": "2026-07-17T15:34:49+00:00",
+    "export_params": {
+      "edge_support_tol_deg": 0.1,
+      "close_thresh_km": 11.0,
+      "medium_thresh_km": 15.0,
+      "score_mode": "edge_exact",
+      "edge_mode": "e8"
+    }
+  },
+  "seeds": [
+    {
+      "seed": 1535,
+      "family": "elite",
+      "orientation": {
+        "lat": -85.0,
+        "lon": -115.0,
+        "bearing": 310.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0464559935,
+        "null_rms_mean_deg": 0.050866374,
+        "null_rms_std_deg": 0.0013849309,
+        "p_value": 0.006993007,
+        "z_score": -3.1845,
+        "effect_size_d": 3.1845,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.394904,
+          "null_mean": 0.383293,
+          "null_std": 0.0354,
+          "lift": 0.011611,
+          "d": 0.328,
+          "p": 0.390609
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.802548,
+          "null_mean": 0.719446,
+          "null_std": 0.027472,
+          "lift": 0.083102,
+          "d": 3.025,
+          "p": 0.001998
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.968153,
+          "null_mean": 0.938637,
+          "null_std": 0.012954,
+          "lift": 0.029516,
+          "d": 2.2786,
+          "p": 0.010989
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 0.993631,
+          "null_mean": 0.998752,
+          "null_std": 0.002714,
+          "lift": -0.005121,
+          "d": -1.8868,
+          "p": 0.988012
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 1.0,
+          "null_std": 0.0,
+          "lift": 0.0,
+          "d": null,
+          "p": 1.0
+        }
+      ],
+      "bh": {
+        "rank": 1,
+        "p": 0.007,
+        "crit": 0.0042,
+        "rejected": true
+      },
+      "status": "bh_significant",
+      "counts": {
+        "supported": 352,
+        "shared2": 10,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 152,
+        "medium": 2,
+        "far": 3
+      },
+      "files": {
+        "grid": "data/seed1535_grid.geojson",
+        "sites": "data/seed1535_sites.geojson",
+        "null": "data/seed1535_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            15,
+            94
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            84,
+            208
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Cerro de la Silla",
+            "Pilot Knob State Park"
+          ]
+        },
+        {
+          "vertex_pair": [
+            3,
+            230
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Panié",
+            "Popomanaseu"
+          ]
+        },
+        {
+          "vertex_pair": [
+            124,
+            127
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Sinai",
+            "Longyearbyen Spitsbergen"
+          ]
+        },
+        {
+          "vertex_pair": [
+            173,
+            229
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Pulag",
+            "Puncak Jaya"
+          ]
+        },
+        {
+          "vertex_pair": [
+            75,
+            124
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Piram Island",
+            "Angkor Wat"
+          ]
+        },
+        {
+          "vertex_pair": [
+            132,
+            204
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Lake Baikal (Cape Khoboy)",
+            "Yuzhny Novaya Zemlya"
+          ]
+        },
+        {
+          "vertex_pair": [
+            86,
+            189
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Forbidden City Beijing",
+            "Lena-Muna juncture"
+          ]
+        },
+        {
+          "vertex_pair": [
+            101,
+            111
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Puncak Jaya",
+            "South Magnetic Pole"
+          ]
+        },
+        {
+          "vertex_pair": [
+            23,
+            211
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Tomaniivi",
+            "Kiritimati (Christmas Island)"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 788,
+      "family": "elite",
+      "orientation": {
+        "lat": 19.0,
+        "lon": -141.0,
+        "bearing": 128.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0453361336,
+        "null_rms_mean_deg": 0.0497396423,
+        "null_rms_std_deg": 0.0013922508,
+        "p_value": 0.007992008,
+        "z_score": -3.1629,
+        "effect_size_d": 3.1629,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.394904,
+          "null_mean": 0.389771,
+          "null_std": 0.036066,
+          "lift": 0.005134,
+          "d": 0.1423,
+          "p": 0.476523
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.694268,
+          "null_mean": 0.728586,
+          "null_std": 0.027931,
+          "lift": -0.034318,
+          "d": -1.2287,
+          "p": 0.907093
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.974522,
+          "null_mean": 0.942675,
+          "null_std": 0.012891,
+          "lift": 0.031847,
+          "d": 2.4705,
+          "p": 0.008991
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.999006,
+          "null_std": 0.002448,
+          "lift": 0.000994,
+          "d": 0.406,
+          "p": 0.852148
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 0.999994,
+          "null_std": 0.000201,
+          "lift": 6e-06,
+          "d": 0.0316,
+          "p": 0.999001
+        }
+      ],
+      "bh": {
+        "rank": 2,
+        "p": 0.008,
+        "crit": 0.0083,
+        "rejected": true
+      },
+      "status": "bh_significant",
+      "counts": {
+        "supported": 309,
+        "shared2": 12,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 152,
+        "medium": 5,
+        "far": 0
+      },
+      "files": {
+        "grid": "data/seed788_grid.geojson",
+        "sites": "data/seed788_sites.geojson",
+        "null": "data/seed788_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            87,
+            239
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Nourlangie Rock",
+            "Uzynaral Strait"
+          ]
+        },
+        {
+          "vertex_pair": [
+            3,
+            221
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Great Pyramid of Giza",
+            "Mount of Olives"
+          ]
+        },
+        {
+          "vertex_pair": [
+            72,
+            85
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Pilansberg",
+            "Kgalagadi Transfrontier Park"
+          ]
+        },
+        {
+          "vertex_pair": [
+            151,
+            167
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Lake Chad",
+            "Great Zimbabwe"
+          ]
+        },
+        {
+          "vertex_pair": [
+            27,
+            69
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Isangila Falls",
+            "Chott el Djerid"
+          ]
+        },
+        {
+          "vertex_pair": [
+            75,
+            87
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Plaza de Mayo",
+            "Iguazu Falls"
+          ]
+        },
+        {
+          "vertex_pair": [
+            109,
+            164
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Iguazu Falls",
+            "Bear Island Antarctica"
+          ]
+        },
+        {
+          "vertex_pair": [
+            1,
+            161
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Chott el Djerid",
+            "Mount Maromokotro"
+          ]
+        },
+        {
+          "vertex_pair": [
+            15,
+            238
+          ],
+          "support_n": 2,
+          "site_names": [
+            "High Tatra",
+            "Mount Belukha"
+          ]
+        },
+        {
+          "vertex_pair": [
+            3,
+            235
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Belukha",
+            "Uzynaral Strait"
+          ]
+        },
+        {
+          "vertex_pair": [
+            11,
+            79
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Forbidden City Beijing",
+            "Tai Shan"
+          ]
+        },
+        {
+          "vertex_pair": [
+            29,
+            199
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Boulder Colorado",
+            "Cherskiy"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 1044,
+      "family": "elite",
+      "orientation": {
+        "lat": 25.0,
+        "lon": 5.0,
+        "bearing": 130.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0459126408,
+        "null_rms_mean_deg": 0.0496240742,
+        "null_rms_std_deg": 0.0013046864,
+        "p_value": 0.010989011,
+        "z_score": -2.8447,
+        "effect_size_d": 2.8447,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.394904,
+          "null_mean": 0.391459,
+          "null_std": 0.036007,
+          "lift": 0.003446,
+          "d": 0.0957,
+          "p": 0.504496
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.764331,
+          "null_mean": 0.728191,
+          "null_std": 0.028365,
+          "lift": 0.03614,
+          "d": 1.2741,
+          "p": 0.125874
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.955414,
+          "null_mean": 0.943369,
+          "null_std": 0.012747,
+          "lift": 0.012045,
+          "d": 0.9449,
+          "p": 0.240759
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.999064,
+          "null_std": 0.002326,
+          "lift": 0.000936,
+          "d": 0.4025,
+          "p": 0.857143
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 1.0,
+          "null_std": 0.0,
+          "lift": 0.0,
+          "d": null,
+          "p": 1.0
+        }
+      ],
+      "bh": {
+        "rank": 3,
+        "p": 0.011,
+        "crit": 0.0125,
+        "rejected": true
+      },
+      "status": "bh_significant",
+      "counts": {
+        "supported": 341,
+        "shared2": 17,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 150,
+        "medium": 6,
+        "far": 1
+      },
+      "files": {
+        "grid": "data/seed1044_grid.geojson",
+        "sites": "data/seed1044_sites.geojson",
+        "null": "data/seed1044_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            108,
+            160
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Shaftesbury"
+          ]
+        },
+        {
+          "vertex_pair": [
+            145,
+            148
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Shaftesbury"
+          ]
+        },
+        {
+          "vertex_pair": [
+            27,
+            222
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            54,
+            129
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Kachina Peaks Wilderness",
+            "Mount Whitney"
+          ]
+        },
+        {
+          "vertex_pair": [
+            129,
+            197
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Kachina Peaks Wilderness",
+            "Mount Whitney"
+          ]
+        },
+        {
+          "vertex_pair": [
+            66,
+            71
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mani San",
+            "Kiritimati (Christmas Island)"
+          ]
+        },
+        {
+          "vertex_pair": [
+            109,
+            156
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Great Pyramid of Giza",
+            "Mount of Olives"
+          ]
+        },
+        {
+          "vertex_pair": [
+            20,
+            170
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Pilansberg",
+            "Mont-aux-Sources"
+          ]
+        },
+        {
+          "vertex_pair": [
+            34,
+            211
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Po Lin Monastery",
+            "Forbidden City Beijing"
+          ]
+        },
+        {
+          "vertex_pair": [
+            96,
+            208
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Dimlang",
+            "Lake Chad"
+          ]
+        },
+        {
+          "vertex_pair": [
+            78,
+            83
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Plaza de Mayo",
+            "Praca dos Tres Poderes"
+          ]
+        },
+        {
+          "vertex_pair": [
+            51,
+            153
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Iguazu Falls",
+            "Praca dos Tres Poderes"
+          ]
+        },
+        {
+          "vertex_pair": [
+            46,
+            212
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uzynaral Strait",
+            "Malek Siah Kuh"
+          ]
+        },
+        {
+          "vertex_pair": [
+            3,
+            227
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Simpson PNG",
+            "Puncak Jaya"
+          ]
+        },
+        {
+          "vertex_pair": [
+            214,
+            215
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Puncak Jaya",
+            "Yap Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            162,
+            227
+          ],
+          "support_n": 2,
+          "site_names": [
+            "South Georgia Island",
+            "Elephant Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            77,
+            114
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Ascension Island",
+            "St. Helena Island"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 752,
+      "family": "elite",
+      "orientation": {
+        "lat": 5.0,
+        "lon": 145.0,
+        "bearing": 350.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0465433066,
+        "null_rms_mean_deg": 0.0498648733,
+        "null_rms_std_deg": 0.0012393723,
+        "p_value": 0.011988012,
+        "z_score": -2.68,
+        "effect_size_d": 2.68,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.43949,
+          "null_mean": 0.390701,
+          "null_std": 0.035045,
+          "lift": 0.04879,
+          "d": 1.3922,
+          "p": 0.08991
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.789809,
+          "null_mean": 0.726261,
+          "null_std": 0.026761,
+          "lift": 0.063548,
+          "d": 2.3746,
+          "p": 0.012987
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.961783,
+          "null_mean": 0.942153,
+          "null_std": 0.012792,
+          "lift": 0.019631,
+          "d": 1.5346,
+          "p": 0.106893
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.999019,
+          "null_std": 0.002369,
+          "lift": 0.000981,
+          "d": 0.4141,
+          "p": 0.85015
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 1.0,
+          "null_std": 0.0,
+          "lift": 0.0,
+          "d": null,
+          "p": 1.0
+        }
+      ],
+      "bh": {
+        "rank": 4,
+        "p": 0.012,
+        "crit": 0.0167,
+        "rejected": true
+      },
+      "status": "bh_significant",
+      "counts": {
+        "supported": 337,
+        "shared2": 11,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 150,
+        "medium": 6,
+        "far": 1
+      },
+      "files": {
+        "grid": "data/seed752_grid.geojson",
+        "sites": "data/seed752_sites.geojson",
+        "null": "data/seed752_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            203,
+            227
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Shaftesbury"
+          ]
+        },
+        {
+          "vertex_pair": [
+            112,
+            145
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Shaftesbury",
+            "Pilot Knob State Park"
+          ]
+        },
+        {
+          "vertex_pair": [
+            132,
+            228
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Plaza Mayor Lima",
+            "Rio Ucayali-Rio Maranon confluence"
+          ]
+        },
+        {
+          "vertex_pair": [
+            69,
+            99
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            56,
+            113
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Sundarbans-Sagar Island",
+            "Arunachala Hill"
+          ]
+        },
+        {
+          "vertex_pair": [
+            13,
+            132
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Golden Hinde",
+            "Akimiski Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            161,
+            229
+          ],
+          "support_n": 2,
+          "site_names": [
+            "El Tule-Palenque",
+            "Hivaoa Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            83,
+            233
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Olympus",
+            "Lake Ozero Taymyr"
+          ]
+        },
+        {
+          "vertex_pair": [
+            103,
+            163
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Cerro de Puntas",
+            "Great Exuma Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            121,
+            122
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Damavand",
+            "Vozrozhdeniya Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            48,
+            197
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Wood Buffalo National Park",
+            "Adelaide Peninsula"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 1328,
+      "family": "elite",
+      "orientation": {
+        "lat": 35.0,
+        "lon": -165.0,
+        "bearing": 60.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0468502205,
+        "null_rms_mean_deg": 0.0501506456,
+        "null_rms_std_deg": 0.0013091878,
+        "p_value": 0.013986014,
+        "z_score": -2.521,
+        "effect_size_d": 2.521,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.458599,
+          "null_mean": 0.388127,
+          "null_std": 0.034475,
+          "lift": 0.070471,
+          "d": 2.0441,
+          "p": 0.01998
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.745223,
+          "null_mean": 0.725223,
+          "null_std": 0.026565,
+          "lift": 0.02,
+          "d": 0.7529,
+          "p": 0.274725
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.968153,
+          "null_mean": 0.940771,
+          "null_std": 0.013299,
+          "lift": 0.027382,
+          "d": 2.0589,
+          "p": 0.031968
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.999153,
+          "null_std": 0.002218,
+          "lift": 0.000847,
+          "d": 0.3819,
+          "p": 0.87013
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 1.0,
+          "null_std": 0.0,
+          "lift": 0.0,
+          "d": null,
+          "p": 1.0
+        }
+      ],
+      "bh": {
+        "rank": 5,
+        "p": 0.014,
+        "crit": 0.0208,
+        "rejected": true
+      },
+      "status": "bh_significant",
+      "counts": {
+        "supported": 375,
+        "shared2": 10,
+        "shared3": 1
+      },
+      "site_classes": {
+        "close": 152,
+        "medium": 2,
+        "far": 3
+      },
+      "files": {
+        "grid": "data/seed1328_grid.geojson",
+        "sites": "data/seed1328_sites.geojson",
+        "null": "data/seed1328_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            46,
+            66
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Shaftesbury"
+          ]
+        },
+        {
+          "vertex_pair": [
+            163,
+            226
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Stortorget Stockholm"
+          ]
+        },
+        {
+          "vertex_pair": [
+            47,
+            111
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Midway Atoll",
+            "Lena-Muna juncture"
+          ]
+        },
+        {
+          "vertex_pair": [
+            68,
+            104
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Great Pyramid of Giza",
+            "Callanish"
+          ]
+        },
+        {
+          "vertex_pair": [
+            114,
+            210
+          ],
+          "support_n": 3,
+          "site_names": [
+            "Marco Zero Recife",
+            "Peter and Paul Rocks",
+            "Terreiro de Jesus"
+          ]
+        },
+        {
+          "vertex_pair": [
+            44,
+            130
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Iguazu Falls",
+            "Lake Buenos Aires"
+          ]
+        },
+        {
+          "vertex_pair": [
+            29,
+            139
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Teatro Amazonas",
+            "Lago Arari"
+          ]
+        },
+        {
+          "vertex_pair": [
+            204,
+            228
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Simpson PNG",
+            "Mount Lamlam Guam"
+          ]
+        },
+        {
+          "vertex_pair": [
+            36,
+            202
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Vozrozhdeniya Island",
+            "Wood Buffalo National Park"
+          ]
+        },
+        {
+          "vertex_pair": [
+            114,
+            182
+          ],
+          "support_n": 2,
+          "site_names": [
+            "South Georgia Island",
+            "Prydz Bay"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 1409,
+      "family": "elite",
+      "orientation": {
+        "lat": 35.0,
+        "lon": 25.0,
+        "bearing": 260.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0463728647,
+        "null_rms_mean_deg": 0.0505989357,
+        "null_rms_std_deg": 0.001361395,
+        "p_value": 0.013986014,
+        "z_score": -3.1042,
+        "effect_size_d": 3.1042,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.382166,
+          "null_mean": 0.386548,
+          "null_std": 0.034487,
+          "lift": -0.004382,
+          "d": -0.1271,
+          "p": 0.588412
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.757962,
+          "null_mean": 0.72207,
+          "null_std": 0.028936,
+          "lift": 0.035892,
+          "d": 1.2404,
+          "p": 0.127872
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.949045,
+          "null_mean": 0.938764,
+          "null_std": 0.013089,
+          "lift": 0.01028,
+          "d": 0.7854,
+          "p": 0.292707
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.998866,
+          "null_std": 0.002582,
+          "lift": 0.001134,
+          "d": 0.4391,
+          "p": 0.831169
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 1.0,
+          "null_std": 0.0,
+          "lift": 0.0,
+          "d": null,
+          "p": 1.0
+        }
+      ],
+      "bh": {
+        "rank": 6,
+        "p": 0.014,
+        "crit": 0.025,
+        "rejected": true
+      },
+      "status": "bh_significant",
+      "counts": {
+        "supported": 396,
+        "shared2": 24,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 149,
+        "medium": 6,
+        "far": 2
+      },
+      "files": {
+        "grid": "data/seed1409_grid.geojson",
+        "sites": "data/seed1409_sites.geojson",
+        "null": "data/seed1409_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            14,
+            18
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Shaftesbury"
+          ]
+        },
+        {
+          "vertex_pair": [
+            14,
+            217
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Shaftesbury"
+          ]
+        },
+        {
+          "vertex_pair": [
+            54,
+            196
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Shaftesbury"
+          ]
+        },
+        {
+          "vertex_pair": [
+            66,
+            132
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Pico de Teide"
+          ]
+        },
+        {
+          "vertex_pair": [
+            134,
+            196
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Shaftesbury"
+          ]
+        },
+        {
+          "vertex_pair": [
+            176,
+            196
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Shaftesbury"
+          ]
+        },
+        {
+          "vertex_pair": [
+            194,
+            196
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Shaftesbury"
+          ]
+        },
+        {
+          "vertex_pair": [
+            196,
+            200
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Shaftesbury"
+          ]
+        },
+        {
+          "vertex_pair": [
+            66,
+            196
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Shaftesbury",
+            "Pico de Teide"
+          ]
+        },
+        {
+          "vertex_pair": [
+            76,
+            196
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Shaftesbury",
+            "Reykjavik-Thingvellir"
+          ]
+        },
+        {
+          "vertex_pair": [
+            80,
+            196
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Shaftesbury",
+            "Graciosa Azores"
+          ]
+        },
+        {
+          "vertex_pair": [
+            116,
+            196
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Shaftesbury",
+            "Callanish"
+          ]
+        },
+        {
+          "vertex_pair": [
+            196,
+            204
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Shaftesbury",
+            "High Tatra"
+          ]
+        },
+        {
+          "vertex_pair": [
+            196,
+            224
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Shaftesbury",
+            "Graciosa Azores"
+          ]
+        },
+        {
+          "vertex_pair": [
+            60,
+            78
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Karakul Lake",
+            "Arunachala Hill"
+          ]
+        },
+        {
+          "vertex_pair": [
+            178,
+            218
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Great Pyramid of Giza",
+            "Sergiev Posad"
+          ]
+        },
+        {
+          "vertex_pair": [
+            181,
+            188
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mecca",
+            "Takht-e Soleiman"
+          ]
+        },
+        {
+          "vertex_pair": [
+            94,
+            99
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Pilansberg",
+            "Great Zimbabwe"
+          ]
+        },
+        {
+          "vertex_pair": [
+            78,
+            121
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Pulag",
+            "Adam’s Peak"
+          ]
+        },
+        {
+          "vertex_pair": [
+            66,
+            192
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Pico de Teide",
+            "Callanish"
+          ]
+        },
+        {
+          "vertex_pair": [
+            89,
+            102
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Teatro Amazonas",
+            "Lago Arari"
+          ]
+        },
+        {
+          "vertex_pair": [
+            66,
+            70
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Tai Shan",
+            "Karakorum"
+          ]
+        },
+        {
+          "vertex_pair": [
+            203,
+            206
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Boulder Colorado",
+            "Graciosa Azores"
+          ]
+        },
+        {
+          "vertex_pair": [
+            50,
+            152
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Ross Kerguelen",
+            "Big Ben Heard Island"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 904,
+      "family": "elite",
+      "orientation": {
+        "lat": 75.0,
+        "lon": 15.0,
+        "bearing": 10.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0465832535,
+        "null_rms_mean_deg": 0.0502883316,
+        "null_rms_std_deg": 0.0013513601,
+        "p_value": 0.014985015,
+        "z_score": -2.7417,
+        "effect_size_d": 2.7417,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.433121,
+          "null_mean": 0.386707,
+          "null_std": 0.035883,
+          "lift": 0.046414,
+          "d": 1.2935,
+          "p": 0.120879
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.751592,
+          "null_mean": 0.724643,
+          "null_std": 0.027975,
+          "lift": 0.026949,
+          "d": 0.9633,
+          "p": 0.18981
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.949045,
+          "null_mean": 0.940121,
+          "null_std": 0.012495,
+          "lift": 0.008924,
+          "d": 0.7142,
+          "p": 0.323676
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.999051,
+          "null_std": 0.00239,
+          "lift": 0.000949,
+          "d": 0.3971,
+          "p": 0.858142
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 0.999987,
+          "null_std": 0.000285,
+          "lift": 1.3e-05,
+          "d": 0.0448,
+          "p": 0.998002
+        }
+      ],
+      "bh": {
+        "rank": 7,
+        "p": 0.015,
+        "crit": 0.0292,
+        "rejected": true
+      },
+      "status": "bh_significant",
+      "counts": {
+        "supported": 357,
+        "shared2": 9,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 149,
+        "medium": 6,
+        "far": 2
+      },
+      "files": {
+        "grid": "data/seed904_grid.geojson",
+        "sites": "data/seed904_sites.geojson",
+        "null": "data/seed904_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            56,
+            177
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Shaftesbury",
+            "Mount of Olives"
+          ]
+        },
+        {
+          "vertex_pair": [
+            70,
+            172
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Rio Ucayali-Rio Maranon confluence",
+            "Mont-aux-Sources"
+          ]
+        },
+        {
+          "vertex_pair": [
+            53,
+            127
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            127,
+            191
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            153,
+            156
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Kachina Peaks Wilderness",
+            "Cherskiy"
+          ]
+        },
+        {
+          "vertex_pair": [
+            134,
+            167
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Parnaiba River Headwaters",
+            "Callanish"
+          ]
+        },
+        {
+          "vertex_pair": [
+            5,
+            31
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Praca dos Tres Poderes",
+            "Timbuktu"
+          ]
+        },
+        {
+          "vertex_pair": [
+            199,
+            205
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Lake Toba",
+            "Angkor Wat"
+          ]
+        },
+        {
+          "vertex_pair": [
+            105,
+            233
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Adelaide Peninsula",
+            "Bay of God’s Mercy"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 1383,
+      "family": "elite",
+      "orientation": {
+        "lat": 45.0,
+        "lon": -105.0,
+        "bearing": 220.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0465459624,
+        "null_rms_mean_deg": 0.049716134,
+        "null_rms_std_deg": 0.0013510935,
+        "p_value": 0.025974026,
+        "z_score": -2.3464,
+        "effect_size_d": 2.3464,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.407643,
+          "null_mean": 0.387057,
+          "null_std": 0.036644,
+          "lift": 0.020586,
+          "d": 0.5618,
+          "p": 0.315684
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.745223,
+          "null_mean": 0.72651,
+          "null_std": 0.027157,
+          "lift": 0.018713,
+          "d": 0.6891,
+          "p": 0.292707
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.961783,
+          "null_mean": 0.943274,
+          "null_std": 0.012801,
+          "lift": 0.01851,
+          "d": 1.4459,
+          "p": 0.107892
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.999108,
+          "null_std": 0.0023,
+          "lift": 0.000892,
+          "d": 0.3877,
+          "p": 0.865135
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 1.0,
+          "null_std": 0.0,
+          "lift": 0.0,
+          "d": null,
+          "p": 1.0
+        }
+      ],
+      "bh": {
+        "rank": 8,
+        "p": 0.026,
+        "crit": 0.0333,
+        "rejected": true
+      },
+      "status": "bh_significant",
+      "counts": {
+        "supported": 345,
+        "shared2": 13,
+        "shared3": 1
+      },
+      "site_classes": {
+        "close": 150,
+        "medium": 4,
+        "far": 3
+      },
+      "files": {
+        "grid": "data/seed1383_grid.geojson",
+        "sites": "data/seed1383_sites.geojson",
+        "null": "data/seed1383_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            122,
+            138
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Shaftesbury"
+          ]
+        },
+        {
+          "vertex_pair": [
+            5,
+            31
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            13,
+            156
+          ],
+          "support_n": 3,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta",
+            "Popomanaseu"
+          ]
+        },
+        {
+          "vertex_pair": [
+            36,
+            200
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Kailash",
+            "Po Lin Monastery"
+          ]
+        },
+        {
+          "vertex_pair": [
+            82,
+            136
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Karakul Lake",
+            "Lake Baikal (Cape Khoboy)"
+          ]
+        },
+        {
+          "vertex_pair": [
+            215,
+            222
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Haleakala Crater",
+            "Mauna Loa"
+          ]
+        },
+        {
+          "vertex_pair": [
+            80,
+            178
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Jebel Toubkal",
+            "Graciosa Azores"
+          ]
+        },
+        {
+          "vertex_pair": [
+            110,
+            187
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Teatro Amazonas",
+            "Washington DC"
+          ]
+        },
+        {
+          "vertex_pair": [
+            192,
+            201
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Angel Falls",
+            "Fogo Cape Verde"
+          ]
+        },
+        {
+          "vertex_pair": [
+            7,
+            231
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Olympus",
+            "Vozrozhdeniya Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            194,
+            196
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Arunachala Hill",
+            "Piram Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            27,
+            85
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Three Sisters Blue Mountains",
+            "Mount Picton Tasmania"
+          ]
+        },
+        {
+          "vertex_pair": [
+            104,
+            204
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Timbuktu",
+            "Mount Loma"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 1207,
+      "family": "elite",
+      "orientation": {
+        "lat": -25.0,
+        "lon": 55.0,
+        "bearing": 240.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0469116464,
+        "null_rms_mean_deg": 0.0497571885,
+        "null_rms_std_deg": 0.0013324597,
+        "p_value": 0.033966034,
+        "z_score": -2.1356,
+        "effect_size_d": 2.1356,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.414013,
+          "null_mean": 0.390643,
+          "null_std": 0.035437,
+          "lift": 0.023369,
+          "d": 0.6595,
+          "p": 0.286713
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.745223,
+          "null_mean": 0.729446,
+          "null_std": 0.027443,
+          "lift": 0.015777,
+          "d": 0.5749,
+          "p": 0.333666
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.942675,
+          "null_mean": 0.942115,
+          "null_std": 0.012777,
+          "lift": 0.000561,
+          "d": 0.0439,
+          "p": 0.592408
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.99914,
+          "null_std": 0.002268,
+          "lift": 0.00086,
+          "d": 0.3792,
+          "p": 0.87013
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 1.0,
+          "null_std": 0.0,
+          "lift": 0.0,
+          "d": null,
+          "p": 1.0
+        }
+      ],
+      "bh": {
+        "rank": 9,
+        "p": 0.034,
+        "crit": 0.0375,
+        "rejected": true
+      },
+      "status": "bh_significant",
+      "counts": {
+        "supported": 328,
+        "shared2": 12,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 147,
+        "medium": 8,
+        "far": 2
+      },
+      "files": {
+        "grid": "data/seed1207_grid.geojson",
+        "sites": "data/seed1207_sites.geojson",
+        "null": "data/seed1207_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            19,
+            230
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Mont-aux-Sources"
+          ]
+        },
+        {
+          "vertex_pair": [
+            53,
+            125
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Brandenburg Gate",
+            "Sergiev Posad"
+          ]
+        },
+        {
+          "vertex_pair": [
+            114,
+            144
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Brandenburg Gate",
+            "Mount Olympus"
+          ]
+        },
+        {
+          "vertex_pair": [
+            62,
+            76
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            81,
+            135
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Mount Picton Tasmania"
+          ]
+        },
+        {
+          "vertex_pair": [
+            135,
+            183
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Kata Tjuta",
+            "Mount Picton Tasmania"
+          ]
+        },
+        {
+          "vertex_pair": [
+            71,
+            107
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Golden Hinde",
+            "Wood Buffalo National Park"
+          ]
+        },
+        {
+          "vertex_pair": [
+            44,
+            190
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Cerro de la Silla",
+            "St. George’s Island Bermuda"
+          ]
+        },
+        {
+          "vertex_pair": [
+            47,
+            227
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Fuji",
+            "Lake Toba"
+          ]
+        },
+        {
+          "vertex_pair": [
+            133,
+            141
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Lake Rotopounamu",
+            "Fraser Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            28,
+            57
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Konzhakovsky Kamen",
+            "Yuzhny Novaya Zemlya"
+          ]
+        },
+        {
+          "vertex_pair": [
+            188,
+            220
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Jebel Toubkal",
+            "Lisbon Portugal"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 1354,
+      "family": "elite",
+      "orientation": {
+        "lat": -85.0,
+        "lon": 85.0,
+        "bearing": 240.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0469027841,
+        "null_rms_mean_deg": 0.0495607682,
+        "null_rms_std_deg": 0.001304187,
+        "p_value": 0.035964036,
+        "z_score": -2.038,
+        "effect_size_d": 2.038,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.471338,
+          "null_mean": 0.390401,
+          "null_std": 0.038102,
+          "lift": 0.080936,
+          "d": 2.1242,
+          "p": 0.01998
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.796178,
+          "null_mean": 0.728376,
+          "null_std": 0.027175,
+          "lift": 0.067803,
+          "d": 2.495,
+          "p": 0.007992
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.949045,
+          "null_mean": 0.943191,
+          "null_std": 0.012456,
+          "lift": 0.005854,
+          "d": 0.4699,
+          "p": 0.422577
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.999006,
+          "null_std": 0.002448,
+          "lift": 0.000994,
+          "d": 0.406,
+          "p": 0.852148
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 1.0,
+          "null_std": 0.0,
+          "lift": 0.0,
+          "d": null,
+          "p": 1.0
+        }
+      ],
+      "bh": {
+        "rank": 10,
+        "p": 0.036,
+        "crit": 0.0417,
+        "rejected": true
+      },
+      "status": "bh_significant",
+      "counts": {
+        "supported": 328,
+        "shared2": 16,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 149,
+        "medium": 5,
+        "far": 3
+      },
+      "files": {
+        "grid": "data/seed1354_grid.geojson",
+        "sites": "data/seed1354_sites.geojson",
+        "null": "data/seed1354_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            67,
+            197
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Shaftesbury",
+            "Callanish"
+          ]
+        },
+        {
+          "vertex_pair": [
+            116,
+            119
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            19,
+            230
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Kinabalu",
+            "Angkor Wat"
+          ]
+        },
+        {
+          "vertex_pair": [
+            6,
+            14
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Kailash",
+            "Lake Toba"
+          ]
+        },
+        {
+          "vertex_pair": [
+            143,
+            199
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Kailash",
+            "Emei Shan"
+          ]
+        },
+        {
+          "vertex_pair": [
+            19,
+            26
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Golden Hinde",
+            "Denali (Mount McKinley)"
+          ]
+        },
+        {
+          "vertex_pair": [
+            26,
+            177
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Golden Hinde",
+            "Denali (Mount McKinley)"
+          ]
+        },
+        {
+          "vertex_pair": [
+            130,
+            166
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Cerro de la Silla",
+            "Adelaide Peninsula"
+          ]
+        },
+        {
+          "vertex_pair": [
+            31,
+            71
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Great Pyramid of Giza",
+            "Malek Siah Kuh"
+          ]
+        },
+        {
+          "vertex_pair": [
+            89,
+            226
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount of Olives",
+            "Sergiev Posad"
+          ]
+        },
+        {
+          "vertex_pair": [
+            43,
+            215
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mont-aux-Sources",
+            "Kgalagadi Transfrontier Park"
+          ]
+        },
+        {
+          "vertex_pair": [
+            92,
+            138
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Stortorget Stockholm",
+            "Yuzhny Novaya Zemlya"
+          ]
+        },
+        {
+          "vertex_pair": [
+            160,
+            228
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Boulder Colorado",
+            "Cherskiy"
+          ]
+        },
+        {
+          "vertex_pair": [
+            88,
+            104
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Cahokia Mounds",
+            "Nuuk Greenland"
+          ]
+        },
+        {
+          "vertex_pair": [
+            110,
+            145
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Dakar",
+            "Mount Loma"
+          ]
+        },
+        {
+          "vertex_pair": [
+            67,
+            143
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Ascension Island",
+            "Mount Loma"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 1649,
+      "family": "elite",
+      "orientation": {
+        "lat": 55.0,
+        "lon": 5.0,
+        "bearing": 300.0
+      },
+      "stats": {
+        "real_rms_deg": 0.046957285,
+        "null_rms_mean_deg": 0.049418841,
+        "null_rms_std_deg": 0.0013267324,
+        "p_value": 0.0539460539,
+        "z_score": -1.8554,
+        "effect_size_d": 1.8554,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.394904,
+          "null_mean": 0.390987,
+          "null_std": 0.03401,
+          "lift": 0.003917,
+          "d": 0.1152,
+          "p": 0.484515
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.745223,
+          "null_mean": 0.729834,
+          "null_std": 0.026038,
+          "lift": 0.015389,
+          "d": 0.591,
+          "p": 0.325674
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.949045,
+          "null_mean": 0.943694,
+          "null_std": 0.012771,
+          "lift": 0.00535,
+          "d": 0.4189,
+          "p": 0.428571
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.999191,
+          "null_std": 0.002159,
+          "lift": 0.000809,
+          "d": 0.3747,
+          "p": 0.875125
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 1.0,
+          "null_std": 0.0,
+          "lift": 0.0,
+          "d": null,
+          "p": 1.0
+        }
+      ],
+      "bh": {
+        "rank": 11,
+        "p": 0.0539,
+        "crit": 0.0458,
+        "rejected": false
+      },
+      "status": "elite_nonsignificant",
+      "counts": {
+        "supported": 333,
+        "shared2": 12,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 149,
+        "medium": 7,
+        "far": 1
+      },
+      "files": {
+        "grid": "data/seed1649_grid.geojson",
+        "sites": "data/seed1649_sites.geojson",
+        "null": "data/seed1649_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            99,
+            173
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            51,
+            224
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Tirta Empul",
+            "Mount Kinabalu"
+          ]
+        },
+        {
+          "vertex_pair": [
+            197,
+            199
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Shasta",
+            "Mount Panié"
+          ]
+        },
+        {
+          "vertex_pair": [
+            32,
+            128
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Sinai",
+            "Timbuktu"
+          ]
+        },
+        {
+          "vertex_pair": [
+            93,
+            163
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Sinai",
+            "Mount Elbrus"
+          ]
+        },
+        {
+          "vertex_pair": [
+            28,
+            118
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Iguazu Falls",
+            "Angel Falls"
+          ]
+        },
+        {
+          "vertex_pair": [
+            193,
+            195
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uhuru Peak Kilimanjaro",
+            "Lake Victoria (Ukerewe Island)"
+          ]
+        },
+        {
+          "vertex_pair": [
+            60,
+            100
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Dakar",
+            "Ascension Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            169,
+            235
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Callanish",
+            "Bay of God’s Mercy"
+          ]
+        },
+        {
+          "vertex_pair": [
+            46,
+            160
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Lena-Muna juncture",
+            "Yuzhny Novaya Zemlya"
+          ]
+        },
+        {
+          "vertex_pair": [
+            19,
+            106
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Orohena",
+            "Hivaoa Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            19,
+            202
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Orohena",
+            "Hivaoa Island"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 354,
+      "family": "elite",
+      "orientation": {
+        "lat": 55.0,
+        "lon": 65.0,
+        "bearing": 350.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0469632547,
+        "null_rms_mean_deg": 0.0492890804,
+        "null_rms_std_deg": 0.0013278622,
+        "p_value": 0.0589410589,
+        "z_score": -1.7516,
+        "effect_size_d": 1.7516,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.388535,
+          "null_mean": 0.389809,
+          "null_std": 0.034961,
+          "lift": -0.001274,
+          "d": -0.0364,
+          "p": 0.532468
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.751592,
+          "null_mean": 0.729803,
+          "null_std": 0.028359,
+          "lift": 0.02179,
+          "d": 0.7684,
+          "p": 0.23976
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.968153,
+          "null_mean": 0.945478,
+          "null_std": 0.012391,
+          "lift": 0.022675,
+          "d": 1.83,
+          "p": 0.04995
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.999102,
+          "null_std": 0.002306,
+          "lift": 0.000898,
+          "d": 0.3894,
+          "p": 0.864136
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 0.999994,
+          "null_std": 0.000201,
+          "lift": 6e-06,
+          "d": 0.0316,
+          "p": 0.999001
+        }
+      ],
+      "bh": {
+        "rank": 12,
+        "p": 0.0589,
+        "crit": 0.05,
+        "rejected": false
+      },
+      "status": "elite_nonsignificant",
+      "counts": {
+        "supported": 333,
+        "shared2": 8,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 151,
+        "medium": 4,
+        "far": 2
+      },
+      "files": {
+        "grid": "data/seed354_grid.geojson",
+        "sites": "data/seed354_sites.geojson",
+        "null": "data/seed354_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            96,
+            225
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Shaftesbury",
+            "Stortorget Stockholm"
+          ]
+        },
+        {
+          "vertex_pair": [
+            27,
+            229
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Sundarbans-Sagar Island",
+            "Po Lin Monastery"
+          ]
+        },
+        {
+          "vertex_pair": [
+            5,
+            131
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Fuji",
+            "Tunguska"
+          ]
+        },
+        {
+          "vertex_pair": [
+            104,
+            225
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Sefa Utaki",
+            "Tai Shan"
+          ]
+        },
+        {
+          "vertex_pair": [
+            95,
+            159
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Great Pyramid of Giza",
+            "Mount Sinai"
+          ]
+        },
+        {
+          "vertex_pair": [
+            28,
+            191
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mont-aux-Sources",
+            "Port Stanley"
+          ]
+        },
+        {
+          "vertex_pair": [
+            73,
+            182
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Sergiev Posad",
+            "Chott el Djerid"
+          ]
+        },
+        {
+          "vertex_pair": [
+            52,
+            81
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Whitney",
+            "Cherskiy"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 1175,
+      "family": "control",
+      "orientation": {
+        "lat": -15.0,
+        "lon": 145.0,
+        "bearing": 350.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0496169279,
+        "null_rms_mean_deg": 0.0512966881,
+        "null_rms_std_deg": 0.001344833,
+        "p_value": 0.1068931069,
+        "z_score": -1.249,
+        "effect_size_d": 1.249,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.43949,
+          "null_mean": 0.383822,
+          "null_std": 0.037486,
+          "lift": 0.055669,
+          "d": 1.4851,
+          "p": 0.076923
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.66879,
+          "null_mean": 0.71721,
+          "null_std": 0.028243,
+          "lift": -0.04842,
+          "d": -1.7144,
+          "p": 0.966034
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.936306,
+          "null_mean": 0.936255,
+          "null_std": 0.013297,
+          "lift": 5.1e-05,
+          "d": 0.0038,
+          "p": 0.605395
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.998618,
+          "null_std": 0.002819,
+          "lift": 0.001382,
+          "d": 0.4903,
+          "p": 0.796204
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 0.999987,
+          "null_std": 0.000285,
+          "lift": 1.3e-05,
+          "d": 0.0448,
+          "p": 0.998002
+        }
+      ],
+      "bh": null,
+      "status": "control",
+      "counts": {
+        "supported": 340,
+        "shared2": 19,
+        "shared3": 1
+      },
+      "site_classes": {
+        "close": 147,
+        "medium": 8,
+        "far": 2
+      },
+      "files": {
+        "grid": "data/seed1175_grid.geojson",
+        "sites": "data/seed1175_sites.geojson",
+        "null": "data/seed1175_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            20,
+            134
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Island of the Sun",
+            "Rio Ucayali-Rio Maranon confluence"
+          ]
+        },
+        {
+          "vertex_pair": [
+            19,
+            194
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            63,
+            199
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Tirta Empul",
+            "Mount Kinabalu"
+          ]
+        },
+        {
+          "vertex_pair": [
+            61,
+            123
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Kinabalu",
+            "Angkor Wat"
+          ]
+        },
+        {
+          "vertex_pair": [
+            44,
+            114
+          ],
+          "support_n": 3,
+          "site_names": [
+            "Sundarbans-Sagar Island",
+            "Piram Island",
+            "Mount Lamlam Guam"
+          ]
+        },
+        {
+          "vertex_pair": [
+            100,
+            176
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Shasta",
+            "Parnaiba River Headwaters"
+          ]
+        },
+        {
+          "vertex_pair": [
+            73,
+            91
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Great Pyramid of Giza",
+            "Callanish"
+          ]
+        },
+        {
+          "vertex_pair": [
+            108,
+            198
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Great Pyramid of Giza",
+            "Takht-e Soleiman"
+          ]
+        },
+        {
+          "vertex_pair": [
+            40,
+            188
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Sinai",
+            "Mount Elbrus"
+          ]
+        },
+        {
+          "vertex_pair": [
+            75,
+            189
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Sinai",
+            "Mount Elbrus"
+          ]
+        },
+        {
+          "vertex_pair": [
+            91,
+            134
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Sinai",
+            "Mount Elbrus"
+          ]
+        },
+        {
+          "vertex_pair": [
+            91,
+            183
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Sinai",
+            "Mount of Olives"
+          ]
+        },
+        {
+          "vertex_pair": [
+            4,
+            61
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Takht-e Soleiman",
+            "Callanish"
+          ]
+        },
+        {
+          "vertex_pair": [
+            16,
+            100
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Parnaiba River Headwaters",
+            "Teatro Amazonas"
+          ]
+        },
+        {
+          "vertex_pair": [
+            105,
+            156
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Teatro Amazonas",
+            "Lago Arari"
+          ]
+        },
+        {
+          "vertex_pair": [
+            62,
+            228
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Lago Arari",
+            "Easter Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            89,
+            195
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Three Sisters Blue Mountains",
+            "Mount Simpson PNG"
+          ]
+        },
+        {
+          "vertex_pair": [
+            51,
+            215
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Independence Fjord",
+            "Halifax Nova Scotia"
+          ]
+        },
+        {
+          "vertex_pair": [
+            139,
+            170
+          ],
+          "support_n": 2,
+          "site_names": [
+            "South Pole",
+            "South Magnetic Pole"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 1472,
+      "family": "control",
+      "orientation": {
+        "lat": 5.0,
+        "lon": -5.0,
+        "bearing": 200.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0491574977,
+        "null_rms_mean_deg": 0.0503974289,
+        "null_rms_std_deg": 0.0013739322,
+        "p_value": 0.1698301698,
+        "z_score": -0.9025,
+        "effect_size_d": 0.9025,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.407643,
+          "null_mean": 0.386427,
+          "null_std": 0.034842,
+          "lift": 0.021217,
+          "d": 0.6089,
+          "p": 0.285714
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.713376,
+          "null_mean": 0.722503,
+          "null_std": 0.028276,
+          "lift": -0.009127,
+          "d": -0.3228,
+          "p": 0.659341
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.936306,
+          "null_mean": 0.939427,
+          "null_std": 0.013072,
+          "lift": -0.003121,
+          "d": -0.2388,
+          "p": 0.69031
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.998962,
+          "null_std": 0.002437,
+          "lift": 0.001038,
+          "d": 0.426,
+          "p": 0.842158
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 0.999987,
+          "null_std": 0.000285,
+          "lift": 1.3e-05,
+          "d": 0.0448,
+          "p": 0.998002
+        }
+      ],
+      "bh": null,
+      "status": "control",
+      "counts": {
+        "supported": 317,
+        "shared2": 9,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 147,
+        "medium": 9,
+        "far": 1
+      },
+      "files": {
+        "grid": "data/seed1472_grid.geojson",
+        "sites": "data/seed1472_sites.geojson",
+        "null": "data/seed1472_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            18,
+            62
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            64,
+            100
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mauna Loa",
+            "Klyuchevskaya Sopka"
+          ]
+        },
+        {
+          "vertex_pair": [
+            22,
+            26
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mont-aux-Sources",
+            "Morne Seychellois"
+          ]
+        },
+        {
+          "vertex_pair": [
+            34,
+            73
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Po Lin Monastery",
+            "Piram Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            137,
+            185
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Marco Zero Recife",
+            "Parnaiba River Headwaters"
+          ]
+        },
+        {
+          "vertex_pair": [
+            162,
+            210
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Marco Zero Recife",
+            "Parnaiba River Headwaters"
+          ]
+        },
+        {
+          "vertex_pair": [
+            15,
+            198
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uhuru Peak Kilimanjaro",
+            "Mount Maromokotro"
+          ]
+        },
+        {
+          "vertex_pair": [
+            41,
+            191
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uhuru Peak Kilimanjaro",
+            "Mount Maromokotro"
+          ]
+        },
+        {
+          "vertex_pair": [
+            32,
+            37
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Sakhalin Island",
+            "Independence Fjord"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 1496,
+      "family": "control",
+      "orientation": {
+        "lat": 75.0,
+        "lon": -145.0,
+        "bearing": 30.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0492962592,
+        "null_rms_mean_deg": 0.0500223827,
+        "null_rms_std_deg": 0.0013457725,
+        "p_value": 0.2667332667,
+        "z_score": -0.5396,
+        "effect_size_d": 0.5396,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.350318,
+          "null_mean": 0.385688,
+          "null_std": 0.035944,
+          "lift": -0.035369,
+          "d": -0.984,
+          "p": 0.864136
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.726115,
+          "null_mean": 0.725962,
+          "null_std": 0.027848,
+          "lift": 0.000153,
+          "d": 0.0055,
+          "p": 0.55045
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.955414,
+          "null_mean": 0.942274,
+          "null_std": 0.012965,
+          "lift": 0.01314,
+          "d": 1.0135,
+          "p": 0.221778
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.998981,
+          "null_std": 0.002454,
+          "lift": 0.001019,
+          "d": 0.4153,
+          "p": 0.846154
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 0.999994,
+          "null_std": 0.000201,
+          "lift": 6e-06,
+          "d": 0.0316,
+          "p": 0.999001
+        }
+      ],
+      "bh": null,
+      "status": "control",
+      "counts": {
+        "supported": 327,
+        "shared2": 9,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 149,
+        "medium": 6,
+        "far": 2
+      },
+      "files": {
+        "grid": "data/seed1496_grid.geojson",
+        "sites": "data/seed1496_sites.geojson",
+        "null": "data/seed1496_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            89,
+            211
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Shaftesbury"
+          ]
+        },
+        {
+          "vertex_pair": [
+            103,
+            110
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Glastonbury Tor",
+            "Shaftesbury"
+          ]
+        },
+        {
+          "vertex_pair": [
+            52,
+            209
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Island of the Sun",
+            "Montego Bay"
+          ]
+        },
+        {
+          "vertex_pair": [
+            182,
+            194
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            41,
+            198
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Hamelin Pool",
+            "Mount Kinabalu"
+          ]
+        },
+        {
+          "vertex_pair": [
+            147,
+            159
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Olympus",
+            "Reykjavik-Thingvellir"
+          ]
+        },
+        {
+          "vertex_pair": [
+            135,
+            183
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Belukha",
+            "Tunguska"
+          ]
+        },
+        {
+          "vertex_pair": [
+            62,
+            172
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Boulder Colorado",
+            "Bay of God’s Mercy"
+          ]
+        },
+        {
+          "vertex_pair": [
+            41,
+            45
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Hope Antarctica",
+            "Sanae Antarctica"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 1085,
+      "family": "control",
+      "orientation": {
+        "lat": 75.0,
+        "lon": -5.0,
+        "bearing": 210.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0496399496,
+        "null_rms_mean_deg": 0.050202442,
+        "null_rms_std_deg": 0.001306118,
+        "p_value": 0.2897102897,
+        "z_score": -0.4307,
+        "effect_size_d": 0.4307,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.369427,
+          "null_mean": 0.386694,
+          "null_std": 0.034575,
+          "lift": -0.017268,
+          "d": -0.4994,
+          "p": 0.724276
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.700637,
+          "null_mean": 0.724535,
+          "null_std": 0.027309,
+          "lift": -0.023898,
+          "d": -0.8751,
+          "p": 0.843157
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.955414,
+          "null_mean": 0.941325,
+          "null_std": 0.012293,
+          "lift": 0.014089,
+          "d": 1.1461,
+          "p": 0.181818
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.998873,
+          "null_std": 0.002545,
+          "lift": 0.001127,
+          "d": 0.443,
+          "p": 0.83017
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 1.0,
+          "null_std": 0.0,
+          "lift": 0.0,
+          "d": null,
+          "p": 1.0
+        }
+      ],
+      "bh": null,
+      "status": "control",
+      "counts": {
+        "supported": 286,
+        "shared2": 11,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 150,
+        "medium": 5,
+        "far": 2
+      },
+      "files": {
+        "grid": "data/seed1085_grid.geojson",
+        "sites": "data/seed1085_sites.geojson",
+        "null": "data/seed1085_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            108,
+            170
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            164,
+            174
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Yap Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            82,
+            168
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Karakul Lake",
+            "Uzynaral Strait"
+          ]
+        },
+        {
+          "vertex_pair": [
+            14,
+            202
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Cerro de la Silla",
+            "Mount Panié"
+          ]
+        },
+        {
+          "vertex_pair": [
+            2,
+            14
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Emei Shan",
+            "Boulder Colorado"
+          ]
+        },
+        {
+          "vertex_pair": [
+            16,
+            132
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Pulag",
+            "Tunguska"
+          ]
+        },
+        {
+          "vertex_pair": [
+            74,
+            219
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Teatro Amazonas",
+            "Angel Falls"
+          ]
+        },
+        {
+          "vertex_pair": [
+            21,
+            159
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Lago Arari",
+            "Praca dos Tres Poderes"
+          ]
+        },
+        {
+          "vertex_pair": [
+            83,
+            123
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Praca dos Tres Poderes",
+            "Mount Loma"
+          ]
+        },
+        {
+          "vertex_pair": [
+            149,
+            165
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Cahokia Mounds",
+            "Washington DC"
+          ]
+        },
+        {
+          "vertex_pair": [
+            69,
+            147
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Dakar",
+            "Fogo Cape Verde"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 797,
+      "family": "control",
+      "orientation": {
+        "lat": -65.0,
+        "lon": -65.0,
+        "bearing": 90.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0498022498,
+        "null_rms_mean_deg": 0.0497265869,
+        "null_rms_std_deg": 0.0012770516,
+        "p_value": 0.4905094905,
+        "z_score": 0.0592,
+        "effect_size_d": 0.0592,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.401274,
+          "null_mean": 0.389981,
+          "null_std": 0.035292,
+          "lift": 0.011293,
+          "d": 0.32,
+          "p": 0.400599
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.726115,
+          "null_mean": 0.727554,
+          "null_std": 0.026267,
+          "lift": -0.001439,
+          "d": -0.0548,
+          "p": 0.588412
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.949045,
+          "null_mean": 0.942917,
+          "null_std": 0.012358,
+          "lift": 0.006127,
+          "d": 0.4958,
+          "p": 0.413586
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.99914,
+          "null_std": 0.002286,
+          "lift": 0.00086,
+          "d": 0.3762,
+          "p": 0.871129
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 1.0,
+          "null_std": 0.0,
+          "lift": 0.0,
+          "d": null,
+          "p": 1.0
+        }
+      ],
+      "bh": null,
+      "status": "control",
+      "counts": {
+        "supported": 329,
+        "shared2": 7,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 149,
+        "medium": 5,
+        "far": 3
+      },
+      "files": {
+        "grid": "data/seed797_grid.geojson",
+        "sites": "data/seed797_sites.geojson",
+        "null": "data/seed797_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            7,
+            234
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Nourlangie Rock",
+            "Mount Simpson PNG"
+          ]
+        },
+        {
+          "vertex_pair": [
+            25,
+            85
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Haleakala Crater",
+            "Mauna Loa"
+          ]
+        },
+        {
+          "vertex_pair": [
+            160,
+            168
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Panié",
+            "Three Sisters Blue Mountains"
+          ]
+        },
+        {
+          "vertex_pair": [
+            77,
+            231
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Marco Zero Recife",
+            "Peter and Paul Rocks"
+          ]
+        },
+        {
+          "vertex_pair": [
+            33,
+            185
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Forbidden City Beijing",
+            "Tai Shan"
+          ]
+        },
+        {
+          "vertex_pair": [
+            109,
+            138
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Tarawa Island",
+            "Mount Silisili"
+          ]
+        },
+        {
+          "vertex_pair": [
+            146,
+            208
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Ross Kerguelen",
+            "Bear Island Antarctica"
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 1700,
+      "family": "control",
+      "orientation": {
+        "lat": 75.0,
+        "lon": 25.0,
+        "bearing": 110.0
+      },
+      "stats": {
+        "real_rms_deg": 0.0495415948,
+        "null_rms_mean_deg": 0.0492086823,
+        "null_rms_std_deg": 0.0013617575,
+        "p_value": 0.5454545455,
+        "z_score": 0.2445,
+        "effect_size_d": 0.2445,
+        "n_trials": 1000,
+        "null_mode": "search"
+      },
+      "quantiles": [
+        {
+          "threshold_deg": 0.02,
+          "real": 0.426752,
+          "null_mean": 0.390408,
+          "null_std": 0.036487,
+          "lift": 0.036344,
+          "d": 0.9961,
+          "p": 0.178821
+        },
+        {
+          "threshold_deg": 0.05,
+          "real": 0.719745,
+          "null_mean": 0.73128,
+          "null_std": 0.027971,
+          "lift": -0.011535,
+          "d": -0.4124,
+          "p": 0.695305
+        },
+        {
+          "threshold_deg": 0.1,
+          "real": 0.949045,
+          "null_mean": 0.94514,
+          "null_std": 0.012402,
+          "lift": 0.003904,
+          "d": 0.3148,
+          "p": 0.48951
+        },
+        {
+          "threshold_deg": 0.2,
+          "real": 1.0,
+          "null_mean": 0.999217,
+          "null_std": 0.002149,
+          "lift": 0.000783,
+          "d": 0.3645,
+          "p": 0.88012
+        },
+        {
+          "threshold_deg": 0.3,
+          "real": 1.0,
+          "null_mean": 1.0,
+          "null_std": 0.0,
+          "lift": 0.0,
+          "d": null,
+          "p": 1.0
+        }
+      ],
+      "bh": null,
+      "status": "control",
+      "counts": {
+        "supported": 340,
+        "shared2": 8,
+        "shared3": 0
+      },
+      "site_classes": {
+        "close": 149,
+        "medium": 4,
+        "far": 4
+      },
+      "files": {
+        "grid": "data/seed1700_grid.geojson",
+        "sites": "data/seed1700_sites.geojson",
+        "null": "data/seed1700_null.json"
+      },
+      "shared_edges": [
+        {
+          "vertex_pair": [
+            70,
+            170
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Rio Ucayali-Rio Maranon confluence",
+            "Isangila Falls"
+          ]
+        },
+        {
+          "vertex_pair": [
+            63,
+            66
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            116,
+            182
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Uluru",
+            "Kata Tjuta"
+          ]
+        },
+        {
+          "vertex_pair": [
+            95,
+            119
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Lake Chad",
+            "St. Helena Island"
+          ]
+        },
+        {
+          "vertex_pair": [
+            68,
+            84
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Lago Arari",
+            "Cerro de Puntas"
+          ]
+        },
+        {
+          "vertex_pair": [
+            25,
+            156
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Mount Belukha",
+            "Morne Seychellois"
+          ]
+        },
+        {
+          "vertex_pair": [
+            116,
+            124
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Khao Nan Mia",
+            "Lake Ozero Taymyr"
+          ]
+        },
+        {
+          "vertex_pair": [
+            177,
+            192
+          ],
+          "support_n": 2,
+          "site_names": [
+            "Piton des Neiges",
+            "Mount Loma"
+          ]
+        }
+      ]
+    }
+  ]
+}

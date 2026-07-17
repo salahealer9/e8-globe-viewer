@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E8 Alignment Viewer — v4.0 confirmatory set</title>
+<script src="https://cesium.com/downloads/cesiumjs/releases/1.119/Build/Cesium/Cesium.js"></script>
+<link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/1.119/Build/Cesium/Widgets/widgets.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b1118;
+  --panel:rgba(16,23,32,.88);
+  --panel-line:#26313f;
+  --text:#dbe4ee;
+  --text-dim:#8b98a8;
+  --gold:#e0b45c;           /* single-support edges */
+  --plat:#efe9d8;           /* shared (2-site) edges */
+  --rose:#e879b0;           /* triple-shared edges */
+  --close:#5fc98e;
+  --medium:#e6c454;
+  --far:#e06b5f;
+  --sig:#e0b45c;
+  --nonsig:#8b98a8;
+  --control:#6e93b8;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--ink);color:var(--text);
+  font:14px/1.45 'IBM Plex Sans',system-ui,sans-serif}
+#globe{position:absolute;inset:0}
+#globe .cesium-viewer-bottom{left:auto;right:8px}
+
+#panel{position:absolute;top:16px;left:16px;width:340px;max-height:calc(100% - 32px);
+  overflow-y:auto;background:var(--panel);backdrop-filter:blur(10px);
+  border:1px solid var(--panel-line);border-radius:10px;padding:18px 18px 14px;
+  scrollbar-width:thin}
+#panel h1{font:400 26px/1.1 'Instrument Serif',serif;letter-spacing:.01em}
+#panel .eyebrow{font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-dim);margin-bottom:6px}
+#panel .sub{color:var(--text-dim);font-size:12px;margin-top:4px}
+
+.block{margin-top:16px;padding-top:14px;border-top:1px solid var(--panel-line)}
+.block-label{font:500 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-dim);margin-bottom:8px}
+
+select{width:100%;padding:8px 10px;background:#0d141d;color:var(--text);
+  border:1px solid var(--panel-line);border-radius:6px;font:inherit}
+select:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.kbd-hint{font-size:11px;color:var(--text-dim);margin-top:5px}
+.kbd-hint kbd{font-family:var(--mono);font-size:10px;border:1px solid var(--panel-line);
+  border-radius:3px;padding:0 4px;background:#0d141d}
+
+.badge{display:inline-block;padding:3px 9px;border-radius:99px;
+  font:500 10.5px/1.5 var(--mono);letter-spacing:.06em}
+.badge.bh_significant{background:rgba(224,180,92,.16);color:var(--sig);border:1px solid rgba(224,180,92,.45)}
+.badge.elite_nonsignificant{background:rgba(139,152,168,.14);color:var(--nonsig);border:1px solid rgba(139,152,168,.4)}
+.badge.control{background:rgba(110,147,184,.14);color:var(--control);border:1px solid rgba(110,147,184,.4)}
+#orientation{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);margin-top:6px}
+
+#hist{width:100%;height:110px;display:block;margin-top:4px}
+#hist-caption{font-size:11px;color:var(--text-dim);margin-top:5px}
+#hist-caption b{color:var(--text);font-weight:500}
+#beat-note{font-size:12px;margin-top:6px;padding:6px 9px;border-radius:6px;
+  background:rgba(110,147,184,.10);border:1px solid var(--panel-line)}
+#beat-note b{font-family:var(--mono);font-weight:500}
+
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-family:var(--mono);font-size:12px}
+.stats .k{color:var(--text-dim)}
+.stats .v{text-align:right}
+
+.covbar{display:flex;height:9px;border-radius:5px;overflow:hidden;margin:6px 0 5px;background:#0d141d}
+.covbar span{height:100%}
+.cov-close{background:var(--close)} .cov-medium{background:var(--medium)} .cov-far{background:var(--far)}
+#cov-text{font-size:12px}
+#cov-text b{font-weight:600}
+
+.control-row{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:13px}
+.control-row input[type=checkbox]{accent-color:var(--gold);width:15px;height:15px}
+.control-row input[type=range]{flex:1;accent-color:var(--gold)}
+.hint{font-size:11px;color:var(--text-dim);margin-top:3px}
+
+.legend{display:flex;gap:14px;font-size:12px;flex-wrap:wrap}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+.legend .line{width:14px;height:3px;border-radius:2px;margin-right:5px;display:inline-block;vertical-align:middle}
+
+#selection{font-size:12.5px;min-height:18px;color:var(--text)}
+#selection .dim{color:var(--text-dim)}
+#selection ul{margin:4px 0 0 16px}
+
+button.ghost{margin-top:10px;margin-right:6px;padding:7px 12px;background:transparent;color:var(--text);
+  border:1px solid var(--panel-line);border-radius:6px;font:inherit;cursor:pointer}
+button.ghost:hover{border-color:var(--gold);color:#f4d68a}
+
+#footer-note{margin-top:16px;padding-top:12px;border-top:1px solid var(--panel-line);
+  font-size:10.5px;color:var(--text-dim);line-height:1.5}
+#footer-note code{font-family:var(--mono);font-size:10px;color:var(--text)}
+
+#loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:var(--ink);z-index:10;font-family:var(--mono);color:var(--text-dim);font-size:13px}
+
+#panel-toggle{display:none}
+@media (max-width:720px){
+  #panel{top:auto;bottom:0;left:0;right:0;width:100%;max-height:52vh;border-radius:14px 14px 0 0}
+  #panel-toggle{display:block;position:absolute;top:12px;right:12px;z-index:5;
+    padding:8px 12px;background:var(--panel);border:1px solid var(--panel-line);
+    border-radius:8px;color:var(--text);font:inherit}
+  body.panel-hidden #panel{display:none}
+}
+@media (prefers-reduced-motion:reduce){ *{scroll-behavior:auto} }
+</style>
+</head>
+<body>
+<div id="globe"></div>
+<button id="panel-toggle" onclick="document.body.classList.toggle('panel-hidden')">Panel</button>
+
+<aside id="panel" aria-label="Statistics panel">
+  <div class="eyebrow">E8 lattice alignment · 157-site catalog</div>
+  <h1>Alignment Viewer</h1>
+  <div class="sub" id="subtitle">v4.0 pre-registered confirmatory set</div>
+
+  <div class="block">
+    <div class="block-label">Projection seed</div>
+    <select id="seed-select" aria-label="Select seed"></select>
+    <div class="kbd-hint"><kbd>←</kbd> <kbd>→</kbd> cycle seeds · link to this view with the page URL</div>
+    <div style="margin-top:9px"><span class="badge" id="status-badge"></span></div>
+    <div id="orientation"></div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">RMS vs search-aware null</div>
+    <canvas id="hist" width="600" height="220" role="img" aria-label="Null distribution histogram"></canvas>
+    <div id="beat-note"></div>
+    <div id="hist-caption"></div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Statistics</div>
+    <div class="stats" id="stats"></div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Site coverage</div>
+    <div class="covbar" id="covbar"></div>
+    <div id="cov-text"></div>
+    <div class="legend" style="margin-top:7px">
+      <span><i style="background:var(--close)"></i><span id="leg-close"></span></span>
+      <span><i style="background:var(--medium)"></i><span id="leg-medium"></span></span>
+      <span><i style="background:var(--far)"></i><span id="leg-far"></span></span>
+    </div>
+    <div class="hint">Display bins only — not significance thresholds.</div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Edge network</div>
+    <div class="legend">
+      <span><span class="line" style="background:var(--gold)"></span><span id="leg-single"></span></span>
+      <span><span class="line" style="background:var(--plat)"></span><span id="leg-shared"></span></span>
+      <span id="leg-shared3-wrap" hidden><span class="line" style="background:var(--rose)"></span><span id="leg-shared3"></span></span>
+    </div>
+    <div class="control-row" id="shared-row" hidden>
+      <input type="checkbox" id="shared-toggle">
+      <label for="shared-toggle" title="Edges passing near 2+ sacred sites">Show shared edges only</label>
+    </div>
+    <div class="control-row">
+      <label for="opacity" style="min-width:86px">Edge opacity</label>
+      <input type="range" id="opacity" min="10" max="100" value="65">
+    </div>
+    <div>
+      <button class="ghost" id="fly-anchor">Fly to anchor</button>
+      <button class="ghost" id="reset-view">Reset view</button>
+      <button class="ghost" id="basemap-toggle">Light basemap</button>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label">Selection</div>
+    <div id="selection"><span class="dim">Click a site or a shared edge on the globe.</span></div>
+  </div>
+
+  <div id="footer-note"></div>
+</aside>
+
+<div id="loading">Loading manifest and seed data …</div>
+
+<script>
+"use strict";
+/* E8 Alignment Viewer v1.1 — manifest-driven; no Ion token.
+   Serve over HTTP: python -m http.server */
+
+const EDGE_TIERS = {           /* color by support count */
+  1:{rgb:[224/255,180/255, 92/255], width:1.3, boost:0   },   /* gold   */
+  2:{rgb:[239/255,233/255,216/255], width:2.6, boost:.30 },   /* platinum */
+  3:{rgb:[232/255,121/255,176/255], width:3.2, boost:.35 },   /* rose   */
+};
+const SITE_COLORS = {close:'#5fc98e', medium:'#e6c454', far:'#e06b5f'};
+const STATUS_LABEL = {
+  bh_significant:'BH-significant (q = 0.05)',
+  elite_nonsignificant:'Not significant',
+  control:'Control — expected null',
+};
+
+let viewer, manifest, current = null, seedOrder = [];
+const seedCache = new Map();
+let edgeAlpha = .65, sharedOnly = false, lightBasemap = false;
+let selLabel = null, selRing = null;
+
+init().catch(err => {
+  document.getElementById('loading').textContent =
+    'Could not load data. Serve this folder over HTTP (e.g. "python -m http.server") — ' + err.message;
+});
+
+async function init(){
+  manifest = await getJSON('data/manifest.json');
+  seedOrder = manifest.seeds.map(s => s.seed);
+
+  viewer = new Cesium.Viewer('globe', {
+    baseLayer: Cesium.ImageryLayer.fromProviderAsync(
+      Cesium.TileMapServiceImageryProvider.fromUrl(
+        Cesium.buildModuleUrl('Assets/Textures/NaturalEarthII'))),
+    baseLayerPicker:false, geocoder:false, timeline:false, animation:false,
+    homeButton:false, sceneModePicker:false, navigationHelpButton:false,
+    infoBox:false, selectionIndicator:false, fullscreenButton:false,
+    requestRenderMode:true, maximumRenderTimeChange:Infinity,
+  });
+  viewer.scene.globe.baseColor = Cesium.Color.fromCssColorString('#16202b');
+  viewer.scene.skyAtmosphere.show = true;
+
+  /* selection affordances: name label + highlight ring (created once) */
+  selLabel = viewer.entities.add({ show:false,
+    label:{ font:'500 13px "IBM Plex Sans", sans-serif',
+      fillColor:Cesium.Color.fromCssColorString('#0b1118'),
+      showBackground:true,
+      backgroundColor:Cesium.Color.fromCssColorString('#efe9d8').withAlpha(.95),
+      backgroundPadding:new Cesium.Cartesian2(8,5),
+      pixelOffset:new Cesium.Cartesian2(0,-18),
+      verticalOrigin:Cesium.VerticalOrigin.BOTTOM,
+      disableDepthTestDistance:Number.POSITIVE_INFINITY }});
+  selRing = viewer.entities.add({ show:false,
+    point:{ pixelSize:15, color:Cesium.Color.TRANSPARENT,
+      outlineColor:Cesium.Color.fromCssColorString('#efe9d8'), outlineWidth:2 }});
+
+  buildSeedSelect();
+  wireControls();
+  renderFooter();
+
+  const fromHash = parseHash();
+  const first = seedOrder.includes(fromHash) ? fromHash : seedOrder[0];
+  document.getElementById('seed-select').value = String(first);
+  await showSeed(first, {fly:false});
+  document.getElementById('loading').remove();
+  resetView(true);
+}
+
+async function getJSON(url){
+  const r = await fetch(url);
+  if(!r.ok) throw new Error(url + ' → HTTP ' + r.status);
+  return r.json();
+}
+function parseHash(){
+  const m = location.hash.match(/^#seed(\d+)$/);
+  return m ? Number(m[1]) : null;
+}
+
+/* ---------------- seed data ---------------- */
+function tier(sup){ return sup >= 3 ? 3 : (sup >= 2 ? 2 : 1); }
+function pairKey(a,b){ return a < b ? a+'-'+b : b+'-'+a; }
+function edgeColor(t){
+  const c = EDGE_TIERS[t];
+  return new Cesium.Color(c.rgb[0], c.rgb[1], c.rgb[2],
+                          Math.min(1, edgeAlpha + c.boost));
+}
+
+async function loadSeed(seed){
+  if(seedCache.has(seed)) return seedCache.get(seed);
+  const entry = manifest.seeds.find(s => s.seed === seed);
+  const [grid, sites, nulls] = await Promise.all([
+    getJSON(entry.files.grid), getJSON(entry.files.sites), getJSON(entry.files.null)]);
+
+  const sharedByPair = new Map();
+  for(const se of (entry.shared_edges || []))
+    sharedByPair.set(pairKey(se.vertex_pair[0], se.vertex_pair[1]), se);
+
+  const gridDS = new Cesium.CustomDataSource('grid-' + seed);
+  const ef = grid.features.find(f => f.properties.kind === 'grid_edges');
+  const lines = ef.geometry.coordinates, pairs = ef.properties.pairs,
+        support = ef.properties.support_counts;
+  for(let i = 0; i < lines.length; i++){
+    const pos = [];
+    for(const [lon, lat] of lines[i]) pos.push(lon, lat);
+    const t = tier(support[i]);
+    gridDS.entities.add({
+      polyline:{
+        positions: Cesium.Cartesian3.fromDegreesArray(pos),
+        arcType: Cesium.ArcType.GEODESIC,
+        width: EDGE_TIERS[t].width,
+        material: new Cesium.ColorMaterialProperty(edgeColor(t)),
+      },
+      properties:{ kind:'edge', tier:t, support:support[i], pair:pairs[i],
+        sharedInfo: t >= 2 ? (sharedByPair.get(pairKey(pairs[i][0], pairs[i][1])) || null) : null },
+    });
+  }
+
+  /* sites: depth-tested (occluded by the globe's far side); tiny height lift
+     avoids z-fighting with the ellipsoid surface */
+  const sitesDS = new Cesium.CustomDataSource('sites-' + seed);
+  for(const f of sites.features){
+    const p = f.properties, [lon, lat] = f.geometry.coordinates;
+    sitesDS.entities.add({
+      position: Cesium.Cartesian3.fromDegrees(lon, lat, 4000),
+      point:{ pixelSize:7,
+        color:Cesium.Color.fromCssColorString(SITE_COLORS[p['class']] || '#ccc'),
+        outlineColor:Cesium.Color.fromCssColorString('#0b1118').withAlpha(.9),
+        outlineWidth:1.5,
+        scaleByDistance:new Cesium.NearFarScalar(2.0e6, 1.25, 2.4e7, .6) },
+      properties:{ kind:'site', name:p.name, dist_km:p.dist_km,
+                   dist_deg:p.dist_deg, cls:p['class'] },
+    });
+  }
+
+  gridDS.show = sitesDS.show = false;
+  await viewer.dataSources.add(gridDS);
+  await viewer.dataSources.add(sitesDS);
+  const rec = { entry, gridDS, sitesDS, null_rms:nulls.null_rms_deg };
+  seedCache.set(seed, rec);
+  return rec;
+}
+
+/* ---------------- display ---------------- */
+async function showSeed(seed, opts = {}){
+  const rec = await loadSeed(seed);
+  if(current && current !== rec){ current.gridDS.show = false; current.sitesDS.show = false; }
+  current = rec;
+  rec.gridDS.show = true; rec.sitesDS.show = true;
+  applyEdgeStyle();
+  renderPanel(rec);
+  clearSelection();
+  if(history.replaceState) history.replaceState(null, '', '#seed' + seed);
+  if(opts.fly !== false) flyToAnchor();
+  viewer.scene.requestRender();
+}
+
+function applyEdgeStyle(){
+  if(!current) return;
+  for(const e of current.gridDS.entities.values){
+    const t = e.properties.tier.getValue();
+    e.show = sharedOnly ? t >= 2 : true;
+    e.polyline.material = new Cesium.ColorMaterialProperty(edgeColor(t));
+  }
+  viewer.scene.requestRender();
+}
+
+function renderPanel(rec){
+  const s = rec.entry, st = s.stats;
+
+  const badge = document.getElementById('status-badge');
+  badge.textContent = STATUS_LABEL[s.status];
+  badge.className = 'badge ' + s.status;
+
+  document.getElementById('orientation').textContent =
+    `anchor  lat ${s.orientation.lat}°  lon ${s.orientation.lon}°  bearing ${s.orientation.bearing}°`;
+
+  const rows = [
+    ['Real RMS', st.real_rms_deg.toFixed(4) + '°'],
+    ['Null μ ± σ', st.null_rms_mean_deg.toFixed(4) + ' ± ' + st.null_rms_std_deg.toFixed(4) + '°'],
+    ['p (best-of-search)', st.p_value.toFixed(4)],
+    ['z', st.z_score.toFixed(2)],
+    ['Cohen d', st.effect_size_d.toFixed(2)],
+    ['Null trials', String(st.n_trials)],
+  ];
+  if(s.bh) rows.push(['BH rank / crit', s.bh.rank + ' / ' + s.bh.crit.toFixed(4)]);
+  document.getElementById('stats').innerHTML =
+    rows.map(([k, v]) => `<div class="k">${k}</div><div class="v">${v}</div>`).join('');
+
+  const sc = s.site_classes, n = manifest.catalog.n_sites;
+  const bins = manifest.display_bins;
+  document.getElementById('covbar').innerHTML = ['close','medium','far']
+    .map(c => `<span class="cov-${c}" style="width:${100*sc[c]/n}%"></span>`).join('');
+  document.getElementById('cov-text').innerHTML =
+    `<b>${sc.close} of ${n}</b> sites within ${bins.close.label.replace('≤ ','')} of an E8 edge`;
+  document.getElementById('leg-close').textContent = bins.close.label + ` (${sc.close})`;
+  document.getElementById('leg-medium').textContent = bins.medium.label + ` (${sc.medium})`;
+  document.getElementById('leg-far').textContent = bins.far.label + ` (${sc.far})`;
+
+  const c = s.counts || {supported:0, shared2:0, shared3:0};
+  document.getElementById('leg-single').textContent = `1 site (${c.supported - c.shared2})`;
+  document.getElementById('leg-shared').textContent = `2 sites (${c.shared2 - c.shared3})`;
+  const w3 = document.getElementById('leg-shared3-wrap');
+  w3.hidden = !(c.shared3 > 0);
+  if(c.shared3 > 0) document.getElementById('leg-shared3').textContent = `3+ sites (${c.shared3})`;
+
+  const row = document.getElementById('shared-row');
+  row.hidden = !(c.shared2 > 0);
+  if(row.hidden && sharedOnly){ sharedOnly = false;
+    document.getElementById('shared-toggle').checked = false; applyEdgeStyle(); }
+  document.querySelector('#shared-row label').textContent =
+    `Show shared edges only (${c.shared2})`;
+
+  drawHistogram(rec);
+
+  /* "how rare is this" — derived from the raw null trials; reproduces
+     the reported Monte-Carlo p = (k+1)/(n+1) exactly */
+  const k = rec.null_rms.filter(v => v <= st.real_rms_deg).length;
+  document.getElementById('beat-note').innerHTML =
+    `<b>${k} of ${st.n_trials}</b> search-optimised random rotations matched or beat the real RMS.`;
+
+  const sig = st.p_value < 0.05;
+  document.getElementById('hist-caption').innerHTML =
+    `Real RMS <b>${st.real_rms_deg.toFixed(4)}°</b> sits ` +
+    (sig ? `in the left tail of the null (p = ${st.p_value.toFixed(4)}).`
+         : `inside the bulk of the null (p = ${st.p_value.toFixed(4)}).`);
+}
+
+/* ---------------- histogram ---------------- */
+function drawHistogram(rec){
+  const cv = document.getElementById('hist'), ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height, padL = 8, padR = 8, padT = 26, padB = 30;
+  ctx.clearRect(0, 0, W, H);
+
+  const vals = rec.null_rms, real = rec.entry.stats.real_rms_deg;
+  let lo = Math.min(real, ...vals), hi = Math.max(real, ...vals);
+  const span = (hi - lo) || 1e-6; lo -= span * .06; hi += span * .06;
+
+  const nb = 36, counts = new Array(nb).fill(0);
+  for(const v of vals) counts[Math.min(nb - 1, Math.floor((v - lo) / (hi - lo) * nb))]++;
+  const cmax = Math.max(...counts);
+
+  const bw = (W - padL - padR) / nb;
+  ctx.fillStyle = 'rgba(110,147,184,.55)';
+  for(let i = 0; i < nb; i++){
+    const h = (H - padT - padB) * counts[i] / cmax;
+    ctx.fillRect(padL + i * bw + .5, H - padB - h, bw - 1, h);
+  }
+  ctx.strokeStyle = 'rgba(139,152,168,.5)';
+  ctx.beginPath(); ctx.moveTo(padL, H - padB + .5); ctx.lineTo(W - padR, H - padB + .5); ctx.stroke();
+
+  const x = padL + (real - lo) / (hi - lo) * (W - padL - padR);
+  ctx.strokeStyle = '#e0b45c'; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.moveTo(x, padT - 8); ctx.lineTo(x, H - padB); ctx.stroke();
+
+  ctx.font = '500 19px "IBM Plex Mono", monospace';
+  ctx.fillStyle = '#e0b45c';
+  const tw = ctx.measureText('real').width;
+  ctx.fillText('real', Math.max(padL, Math.min(W - padR - tw, x - tw / 2)), padT - 4);
+
+  ctx.fillStyle = '#8b98a8'; ctx.font = '17px "IBM Plex Mono", monospace';
+  ctx.fillText(lo.toFixed(3) + '°', padL, H - 8);
+  const hiTxt = hi.toFixed(3) + '°';
+  ctx.fillText(hiTxt, W - padR - ctx.measureText(hiTxt).width, H - 8);
+}
+
+/* ---------------- UI wiring ---------------- */
+function buildSeedSelect(){
+  const sel = document.getElementById('seed-select');
+  const groups = [
+    ['BH-significant', s => s.status === 'bh_significant'],
+    ['Not significant', s => s.status === 'elite_nonsignificant'],
+    ['Controls (expected null)', s => s.status === 'control'],
+  ];
+  for(const [label, test] of groups){
+    const seeds = manifest.seeds.filter(test);
+    if(!seeds.length) continue;
+    const og = document.createElement('optgroup'); og.label = label;
+    for(const s of seeds){
+      const o = document.createElement('option');
+      o.value = s.seed;
+      o.textContent = `Seed ${s.seed} — p = ${s.stats.p_value.toFixed(4)}`;
+      og.appendChild(o);
+    }
+    sel.appendChild(og);
+  }
+  sel.addEventListener('change', e => showSeed(Number(e.target.value)));
+}
+
+function cycleSeed(step){
+  const cur = current ? current.entry.seed : seedOrder[0];
+  const i = seedOrder.indexOf(cur);
+  const next = seedOrder[(i + step + seedOrder.length) % seedOrder.length];
+  document.getElementById('seed-select').value = String(next);
+  showSeed(next);
+}
+
+function wireControls(){
+  document.getElementById('shared-toggle').addEventListener('change', e => {
+    sharedOnly = e.target.checked; applyEdgeStyle();
+  });
+  document.getElementById('opacity').addEventListener('input', e => {
+    edgeAlpha = Number(e.target.value) / 100; applyEdgeStyle();
+  });
+  document.getElementById('reset-view').addEventListener('click', () => resetView(false));
+  document.getElementById('fly-anchor').addEventListener('click', () => flyToAnchor());
+  document.getElementById('basemap-toggle').addEventListener('click', toggleBasemap);
+
+  /* keyboard: arrows cycle seeds (not while typing in a form control) */
+  document.addEventListener('keydown', e => {
+    if(['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)) return;
+    if(e.key === 'ArrowRight'){ e.preventDefault(); cycleSeed(1); }
+    if(e.key === 'ArrowLeft'){ e.preventDefault(); cycleSeed(-1); }
+  });
+  window.addEventListener('hashchange', () => {
+    const s = parseHash();
+    if(s && seedOrder.includes(s) && (!current || current.entry.seed !== s)){
+      document.getElementById('seed-select').value = String(s);
+      showSeed(s);
+    }
+  });
+
+  const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+  handler.setInputAction(m => {
+    const picked = viewer.scene.pick(m.position);
+    if(picked && picked.id && picked.id.properties) select(picked.id);
+    else clearSelection();
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+}
+
+function select(entity){
+  const props = entity.properties;
+  const el = document.getElementById('selection');
+  const kind = props.kind.getValue();
+  if(kind === 'site'){
+    const name = props.name.getValue(), km = props.dist_km.getValue();
+    el.innerHTML = `<b>${name}</b><br>` +
+      `<span class="dim">${km.toFixed(2)} km (${props.dist_deg.getValue().toFixed(4)}°) ` +
+      `from nearest E8 edge · ${props.cls.getValue()}</span>`;
+    const pos = entity.position.getValue(Cesium.JulianDate.now());
+    selLabel.position = pos; selRing.position = pos;
+    selLabel.label.text = `${name} · ${km.toFixed(1)} km`;
+    selLabel.show = selRing.show = true;
+  } else if(kind === 'edge'){
+    selLabel.show = selRing.show = false;
+    const info = props.sharedInfo.getValue();
+    if(info){
+      el.innerHTML = `<b>Shared edge</b> — passes near ${info.support_n} sites:` +
+        `<ul>` + info.site_names.map(n => `<li>${n}</li>`).join('') + `</ul>`;
+    } else {
+      el.innerHTML = `<b>Edge</b> <span class="dim">— supports 1 site within tolerance.</span>`;
+    }
+  }
+  viewer.scene.requestRender();
+}
+function clearSelection(){
+  document.getElementById('selection').innerHTML =
+    '<span class="dim">Click a site or a shared edge on the globe.</span>';
+  if(selLabel){ selLabel.show = false; selRing.show = false; viewer.scene.requestRender(); }
+}
+
+/* ---------------- camera & basemap ---------------- */
+function reduceMotion(){ return matchMedia('(prefers-reduced-motion: reduce)').matches; }
+function flyToAnchor(){
+  if(!current) return;
+  const o = current.entry.orientation;
+  viewer.camera.flyTo({
+    destination: Cesium.Cartesian3.fromDegrees(o.lon, o.lat, 22_000_000),
+    duration: reduceMotion() ? 0 : 1.2,
+  });
+}
+function resetView(instant){
+  viewer.camera.flyTo({
+    destination: Cesium.Cartesian3.fromDegrees(10, 20, 24_000_000),
+    duration: (instant || reduceMotion()) ? 0 : 1.2,
+  });
+}
+async function toggleBasemap(){
+  lightBasemap = !lightBasemap;
+  document.getElementById('basemap-toggle').textContent =
+    lightBasemap ? 'Dark basemap' : 'Light basemap';
+  const provider = lightBasemap
+    ? new Cesium.OpenStreetMapImageryProvider({url:'https://tile.openstreetmap.org/'})
+    : await Cesium.TileMapServiceImageryProvider.fromUrl(
+        Cesium.buildModuleUrl('Assets/Textures/NaturalEarthII'));
+  viewer.imageryLayers.removeAll();
+  viewer.imageryLayers.addImageryProvider(provider);
+  viewer.scene.requestRender();
+}
+
+function renderFooter(){
+  const p = manifest.provenance;
+  document.getElementById('footer-note').innerHTML =
+    manifest.statistical_note + '<br><br>' +
+    `Generated ${p.generated_utc} · engine commit <code>${(p.engine_commit||'').slice(0,10)}</code> · ` +
+    `catalog <code>${p.catalog_file}</code> sha256 <code>${(p.catalog_sha256||'').slice(0,10)}…</code> · ` +
+    `tolerance ${p.export_params.edge_support_tol_deg}°`;
+}
+</script>
+</body>
+</html>

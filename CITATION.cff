@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this viewer or its data, please cite it using these metadata."
+title: "E8 Lattice Alignment Globe Viewer"
+authors:
+  - family-names: Gherbi
+    given-names: Salah-Eddin
+repository-code: "https://github.com/salahealer9/e8-globe-viewer"
+abstract: "Interactive 3D globe viewer displaying E8 lattice edge network alignment with a 157-site catalog, with per-seed search-aware null distributions and BH-FDR status from the v4.0 pre-registered confirmatory phase."
+keywords:
+  - E8 root system
+  - geographic alignment
+  - statistical testing
+  - Monte Carlo
+  - Cesium
+license:
+  - MIT
+  - CC-BY-4.0
+version: 1.0.0
+date-released: "2026-07-17"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21419573
+    description: "Zenodo deposit"
+references:
+  - type: data
+    title: "E8 lattice alignment investigation (research deposits)"
+    doi: 10.5281/zenodo.19047660
