@@ -1,6 +1,6 @@
 # E8 Alignment Viewer
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21419573.svg)](https://doi.org/10.5281/zenodo.21419573)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21419572.svg)](https://doi.org/10.5281/zenodo.21419572)
 
 Interactive 3D globe viewer for the v4.0 pre-registered confirmatory phase of the
 E8 lattice alignment investigation: does an optimally oriented projection of the

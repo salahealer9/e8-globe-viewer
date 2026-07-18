@@ -25,3 +25,6 @@ references:
   - type: data
     title: "E8 lattice alignment investigation (research deposits)"
     doi: 10.5281/zenodo.19047660
+- type: data
+    title: "E8 lattice alignment investigation (research deposits, concept DOI)"
+    doi: 10.5281/zenodo.21419572
