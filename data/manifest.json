@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "title": "E8 Lattice Alignment — v4.0 pre-registered confirmatory set",
   "catalog": {
     "name": "sites_energy_centers_157",
@@ -29,16 +29,16 @@
   },
   "provenance": {
     "engine": "earthgrid-research (private)",
-    "engine_commit": "e8043564b5085ef689464bd5cc269bf171f2e010",
+    "engine_commit": "7b80c043433371b0b099e4a3344bac3c7469577a",
     "engine_branch": "main",
-    "engine_tag": "precommit-v4-5-ge804356",
+    "engine_tag": "precommit-v4-7-g7b80c04-dirty",
     "engine_author": "Salah-Eddin Gherbi",
     "engine_signing_key": "A91239ABCF512130",
     "generator_script": "export_viewer_bundle.py",
     "catalog_file": "sites_energy_centers_157.csv",
     "catalog_sha256": "b1cdb2d01b5542c09588594cd346147beb5e7b9b031b646bb6fd91fdc8d755f1",
     "ks_dir": "results_sacred_sites/sites_energy_centers_157/KS_test/v4",
-    "generated_utc": "2026-07-17T15:34:49+00:00",
+    "generated_utc": "2026-07-18T07:48:49+00:00",
     "export_params": {
       "edge_support_tol_deg": 0.1,
       "close_thresh_km": 11.0,

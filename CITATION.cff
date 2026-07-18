@@ -5,26 +5,28 @@ authors:
   - family-names: Gherbi
     given-names: Salah-Eddin
 repository-code: "https://github.com/salahealer9/e8-globe-viewer"
-abstract: "Interactive 3D globe viewer displaying E8 lattice edge network alignment with a 157-site catalog, with per-seed search-aware null distributions and BH-FDR status from the v4.0 pre-registered confirmatory phase."
+abstract: "Interactive 3D globe viewer displaying E8 lattice edge network alignment with a 157-site catalog, with per-seed search-aware null distributions, BH-FDR status, per-site supported-edge counts, and a camera-synchronized comparison mode, from the v4.0 pre-registered confirmatory phase."
 keywords:
   - E8 root system
   - geographic alignment
   - statistical testing
   - Monte Carlo
+  - false discovery rate
+  - pre-registration
   - Cesium
 license:
   - MIT
   - CC-BY-4.0
-version: 1.0.0
-date-released: "2026-07-17"
+version: 2.0.0
+date-released: "2026-07-18"
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.21419573
-    description: "Zenodo deposit"
+    value: 10.5281/zenodo.21429524
+    description: "Zenodo deposit for version 2.0.0"
+  - type: doi
+    value: 10.5281/zenodo.21419572
+    description: "Zenodo concept DOI (resolves to the latest version)"
 references:
   - type: data
     title: "E8 lattice alignment investigation (research deposits)"
     doi: 10.5281/zenodo.19047660
-- type: data
-    title: "E8 lattice alignment investigation (research deposits, concept DOI)"
-    doi: 10.5281/zenodo.21419572

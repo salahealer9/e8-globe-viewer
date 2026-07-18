@@ -23,7 +23,9 @@ try {
   process.exit(1);
 }
 
-ok(manifest.schema_version === "1.0", "schema_version 1.0");
+ok(["1.0", "1.1"].includes(manifest.schema_version),
+   "schema_version " + manifest.schema_version);
+const hasSupport = manifest.schema_version === "1.1";
 ok(!!manifest.provenance?.engine_commit, "provenance has engine commit");
 ok(!!manifest.provenance?.catalog_sha256, "provenance has catalog sha256");
 
@@ -75,6 +77,22 @@ for (const s of manifest.seeds) {
   ok(JSON.stringify(cls) === JSON.stringify(s.site_classes),
      `site classes match manifest (${JSON.stringify(cls)})`);
   ok(ksSource, "all site distances sourced from KS full-grid test");
+
+  if (hasSupport) {
+    /* edges_supported (exporter's support map) must agree with the KS
+       full-grid distances about which sites lie beyond tolerance */
+    const tol = manifest.provenance.export_params.edge_support_tol_deg;
+    let present = 0, agree = 0;
+    for (const f of sites.features) {
+      const es = f.properties.edges_supported;
+      if (typeof es === "number") present++;
+      const within = f.properties.dist_deg <= tol + 1e-6;
+      if ((es > 0) === within) agree++;
+    }
+    ok(present === sites.features.length, "edges_supported present on all sites");
+    ok(agree === sites.features.length,
+       `support counts agree with KS distances at tol=${tol}° (${agree}/${sites.features.length})`);
+  }
 
   /* null trials reproduce the reported Monte-Carlo p */
   ok(nulls.null_rms_deg.length === s.stats.n_trials,

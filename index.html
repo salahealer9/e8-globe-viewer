@@ -15,9 +15,9 @@
   --panel-line:#26313f;
   --text:#dbe4ee;
   --text-dim:#8b98a8;
-  --gold:#e0b45c;           /* single-support edges */
-  --plat:#efe9d8;           /* shared (2-site) edges */
-  --rose:#e879b0;           /* triple-shared edges */
+  --gold:#e0b45c;
+  --plat:#efe9d8;
+  --rose:#e879b0;
   --close:#5fc98e;
   --medium:#e6c454;
   --far:#e06b5f;
@@ -28,14 +28,20 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;background:var(--ink);color:var(--text);
-  font:14px/1.45 'IBM Plex Sans',system-ui,sans-serif}
+  font:14px/1.45 'IBM Plex Sans',system-ui,sans-serif;overflow:hidden}
 #globe{position:absolute;inset:0}
+#globeB{position:absolute;inset:0 0 0 50%;display:none;border-left:1px solid var(--panel-line)}
+body.compare #globe{inset:0 50% 0 0}
+body.compare #globeB{display:block}
 #globe .cesium-viewer-bottom{left:auto;right:8px}
+#globeB .cesium-viewer-bottom{left:auto;right:8px}
 
+/* ---------------- main panel ---------------- */
 #panel{position:absolute;top:16px;left:16px;width:340px;max-height:calc(100% - 32px);
   overflow-y:auto;background:var(--panel);backdrop-filter:blur(10px);
   border:1px solid var(--panel-line);border-radius:10px;padding:18px 18px 14px;
   scrollbar-width:thin}
+body.compare #panel{display:none}
 #panel h1{font:400 26px/1.1 'Instrument Serif',serif;letter-spacing:.01em}
 #panel .eyebrow{font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
   color:var(--text-dim);margin-bottom:6px}
@@ -51,6 +57,49 @@ select:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid 
 .kbd-hint{font-size:11px;color:var(--text-dim);margin-top:5px}
 .kbd-hint kbd{font-family:var(--mono);font-size:10px;border:1px solid var(--panel-line);
   border-radius:3px;padding:0 4px;background:#0d141d}
+#site-search{width:100%;padding:8px 10px;background:#0d141d;color:var(--text);
+  border:1px solid var(--panel-line);border-radius:6px;font:inherit}
+#site-search::placeholder{color:var(--text-dim)}
+.block{position:relative}
+.ac-list{display:none;position:absolute;left:0;right:0;z-index:20;margin-top:3px;
+  background:#0d141d;border:1px solid var(--panel-line);border-radius:6px;
+  max-height:210px;overflow-y:auto;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.ac-list button{display:block;width:100%;text-align:left;padding:7px 10px;
+  background:none;border:none;color:var(--text);font:12.5px 'IBM Plex Sans',sans-serif;cursor:pointer}
+.ac-list button:hover{background:rgba(224,180,92,.12)}
+@media (pointer:coarse){ .ac-list button{padding:11px 10px} }
+
+/* distance table */
+details.block > summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px}
+details.block > summary::-webkit-details-marker{display:none}
+details.block > summary::after{content:'▸';color:var(--text-dim);font-size:11px;transition:transform .15s}
+details.block[open] > summary::after{transform:rotate(90deg)}
+#dtable-wrap{max-height:250px;overflow-y:auto;margin-top:8px;border:1px solid var(--panel-line);
+  border-radius:6px;scrollbar-width:thin}
+#dtable{width:100%;table-layout:fixed;border-collapse:collapse;font:11.5px var(--mono)}
+#dtable th{position:sticky;top:0;background:#121a24;color:var(--text-dim);text-align:left;
+  padding:6px 6px;cursor:pointer;user-select:none;font-weight:500;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+#dtable th:hover{color:var(--text)}
+#dtable th .arrow{font-size:9px;margin-left:2px}
+#dtable th.c-km{width:58px}
+#dtable th.c-cls{width:30px}
+#dtable th.c-edges{width:52px}
+#dtable td{padding:4px 6px;border-top:1px solid #1a2431;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+#dtable td.num,#dtable th.c-km,#dtable th.c-edges{text-align:right}
+#dtable tbody tr{cursor:pointer}
+#dtable tbody tr:hover{background:rgba(224,180,92,.08)}
+#dtable tbody tr.sel{background:rgba(224,180,92,.16)}
+#dtable i.dot{display:inline-block;width:8px;height:8px;border-radius:50%}
+#dtable-filter{width:100%;margin-top:8px;padding:6px 9px;background:#0d141d;color:var(--text);
+  border:1px solid var(--panel-line);border-radius:6px;font:12px var(--mono)}
+#dtable-filter::placeholder{color:var(--text-dim)}
+#dtable-count{color:var(--text-dim);font-weight:400;margin-left:4px;font:11px var(--mono)}
+@media (pointer:coarse){
+  #dtable td{padding:9px 6px}
+  #dtable-wrap{max-height:38vh}
+}
 
 .badge{display:inline-block;padding:3px 9px;border-radius:99px;
   font:500 10.5px/1.5 var(--mono);letter-spacing:.06em}
@@ -85,13 +134,13 @@ select:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid 
 .legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
 .legend .line{width:14px;height:3px;border-radius:2px;margin-right:5px;display:inline-block;vertical-align:middle}
 
-#selection{font-size:12.5px;min-height:18px;color:var(--text)}
-#selection .dim{color:var(--text-dim)}
-#selection ul{margin:4px 0 0 16px}
-
 button.ghost{margin-top:10px;margin-right:6px;padding:7px 12px;background:transparent;color:var(--text);
   border:1px solid var(--panel-line);border-radius:6px;font:inherit;cursor:pointer}
 button.ghost:hover{border-color:var(--gold);color:#f4d68a}
+
+#selection{font-size:12.5px;min-height:18px;color:var(--text)}
+#selection .dim{color:var(--text-dim)}
+#selection ul{margin:4px 0 0 16px}
 
 #footer-note{margin-top:16px;padding-top:12px;border-top:1px solid var(--panel-line);
   font-size:10.5px;color:var(--text-dim);line-height:1.5}
@@ -100,6 +149,40 @@ button.ghost:hover{border-color:var(--gold);color:#f4d68a}
 #loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   background:var(--ink);z-index:10;font-family:var(--mono);color:var(--text-dim);font-size:13px}
 
+/* ---------------- compare mode ---------------- */
+.cmp-card{display:none;position:absolute;top:14px;width:280px;z-index:4;
+  background:var(--panel);backdrop-filter:blur(10px);
+  border:1px solid var(--panel-line);border-radius:10px;padding:12px 14px}
+body.compare .cmp-card{display:block}
+#card-A{left:14px}
+#card-B{left:calc(50% + 14px)}
+.cmp-head{display:flex;gap:6px;align-items:center}
+.cmp-head select{flex:1;margin-bottom:8px;padding:6px 8px;font-size:13px}
+.cmp-expand{display:none;flex:0 0 auto;margin-bottom:8px;padding:6px 10px;background:#0d141d;
+  color:var(--text-dim);border:1px solid var(--panel-line);border-radius:6px;font:inherit;cursor:pointer}
+.cmp-card.expanded .cmp-expand{transform:rotate(180deg)}
+.cmp-search{width:100%;margin-bottom:8px;padding:5px 8px;background:#0d141d;color:var(--text);
+  border:1px solid var(--panel-line);border-radius:6px;font:12px var(--mono)}
+.cmp-search::placeholder{color:var(--text-dim)}
+.cmp-search.nomatch{border-color:var(--far)}
+.cmp-card canvas{width:100%;height:78px;display:block;margin-top:8px}
+.cmp-stats{font:11.5px var(--mono);margin-top:7px;line-height:1.6;color:var(--text-dim)}
+.cmp-stats b{color:var(--text);font-weight:500}
+#compare-bar{display:none;position:absolute;left:50%;transform:translateX(-50%);bottom:16px;z-index:5;
+  gap:8px;flex-wrap:wrap;justify-content:center;max-width:calc(100% - 24px)}
+body.compare #compare-bar{display:flex}
+#compare-bar button{padding:8px 14px;background:var(--panel);backdrop-filter:blur(10px);color:var(--text);
+  border:1px solid var(--panel-line);border-radius:99px;font:inherit;cursor:pointer;white-space:nowrap}
+#compare-bar button:hover{border-color:var(--gold);color:#f4d68a}
+body.compare #panel-toggle{display:none !important}
+@media (max-width:720px){
+  /* 2×2 grid with real tap targets instead of a cramped wrapped row */
+  #compare-bar{bottom:10px;display:none;grid-template-columns:1fr 1fr;gap:9px;
+    width:calc(100% - 24px)}
+  body.compare #compare-bar{display:grid}
+  #compare-bar button{padding:11px 8px;font-size:13px;text-align:center;min-height:44px}
+}
+
 #panel-toggle{display:none}
 @media (max-width:720px){
   #panel{top:auto;bottom:0;left:0;right:0;width:100%;max-height:52vh;border-radius:14px 14px 0 0}
@@ -107,18 +190,68 @@ button.ghost:hover{border-color:var(--gold);color:#f4d68a}
     padding:8px 12px;background:var(--panel);border:1px solid var(--panel-line);
     border-radius:8px;color:var(--text);font:inherit}
   body.panel-hidden #panel{display:none}
+  body.compare #globe{inset:0 0 50% 0}
+  #globeB{inset:50% 0 0 0;border-left:none;border-top:1px solid var(--panel-line)}
+  .cmp-card{width:calc(100% - 28px);padding:8px 10px}
+  #card-A{left:14px;top:8px}
+  #card-B{left:14px;top:calc(50% + 8px)}
+  .cmp-card canvas{height:56px}
+  .cmp-expand{display:block}
+  /* collapsed by default on mobile: only the seed selector row shows */
+  .cmp-card:not(.expanded) .cmp-search,
+  .cmp-card:not(.expanded) .badge,
+  .cmp-card:not(.expanded) canvas,
+  .cmp-card:not(.expanded) .cmp-stats{display:none}
 }
 @media (prefers-reduced-motion:reduce){ *{scroll-behavior:auto} }
 </style>
 </head>
 <body>
 <div id="globe"></div>
+<div id="globeB"></div>
 <button id="panel-toggle" onclick="document.body.classList.toggle('panel-hidden')">Panel</button>
+
+<div class="cmp-card" id="card-A">
+  <div class="cmp-head">
+    <select id="cmp-select-A" aria-label="Left seed"></select>
+    <button class="cmp-expand" data-card="card-A" aria-label="Expand stats">▾</button>
+  </div>
+  <input class="cmp-search" id="cmp-search-A" type="search"
+         placeholder="Find a site…" autocomplete="off" aria-label="Find a site (left globe)">
+  <span class="badge" id="cmp-badge-A"></span>
+  <canvas id="cmp-hist-A" width="600" height="200"></canvas>
+  <div class="cmp-stats" id="cmp-stats-A"></div>
+</div>
+<div class="cmp-card" id="card-B">
+  <div class="cmp-head">
+    <select id="cmp-select-B" aria-label="Right seed"></select>
+    <button class="cmp-expand" data-card="card-B" aria-label="Expand stats">▾</button>
+  </div>
+  <input class="cmp-search" id="cmp-search-B" type="search"
+         placeholder="Find a site…" autocomplete="off" aria-label="Find a site (right globe)">
+  <span class="badge" id="cmp-badge-B"></span>
+  <canvas id="cmp-hist-B" width="600" height="200"></canvas>
+  <div class="cmp-stats" id="cmp-stats-B"></div>
+</div>
+<div id="compare-bar">
+  <button id="cmp-reset">Reset view</button>
+  <button id="cmp-anchors" title="Fly each globe to its seed's lock point">Fly to anchors</button>
+  <button id="basemap-toggle-cmp">Basemap: Dark</button>
+  <button id="compare-exit" title="Esc also exits">Exit compare</button>
+</div>
 
 <aside id="panel" aria-label="Statistics panel">
   <div class="eyebrow">E8 lattice alignment · 157-site catalog</div>
   <h1>Alignment Viewer</h1>
   <div class="sub" id="subtitle">v4.0 pre-registered confirmatory set</div>
+
+  <div class="block">
+    <div class="block-label">Find a site</div>
+    <input id="site-search" type="search"
+           placeholder="Type a site name…" autocomplete="off"
+           aria-label="Search the 157-site catalog">
+    <div class="hint" id="search-hint"></div>
+  </div>
 
   <div class="block">
     <div class="block-label">Projection seed</div>
@@ -152,6 +285,19 @@ button.ghost:hover{border-color:var(--gold);color:#f4d68a}
     <div class="hint">Display bins only — not significance thresholds.</div>
   </div>
 
+  <details class="block" id="dtable-block">
+    <summary><span class="block-label" style="margin:0">Distance table</span><span id="dtable-count"></span></summary>
+    <input id="dtable-filter" type="search" placeholder="Filter sites…"
+           autocomplete="off" aria-label="Filter table rows">
+    <div id="dtable-wrap">
+      <table id="dtable" aria-label="Per-site distances for the current seed">
+        <thead><tr id="dtable-head"></tr></thead>
+        <tbody id="dtable-body"></tbody>
+      </table>
+    </div>
+    <div class="hint">Click a column to sort · click a row to fly there.</div>
+  </details>
+
   <div class="block">
     <div class="block-label">Edge network</div>
     <div class="legend">
@@ -170,7 +316,8 @@ button.ghost:hover{border-color:var(--gold);color:#f4d68a}
     <div>
       <button class="ghost" id="fly-anchor">Fly to anchor</button>
       <button class="ghost" id="reset-view">Reset view</button>
-      <button class="ghost" id="basemap-toggle">Light basemap</button>
+      <button class="ghost" id="basemap-toggle">Basemap: Dark</button>
+      <button class="ghost" id="compare-btn">Compare seeds</button>
     </div>
   </div>
 
@@ -186,13 +333,13 @@ button.ghost:hover{border-color:var(--gold);color:#f4d68a}
 
 <script>
 "use strict";
-/* E8 Alignment Viewer v1.1 — manifest-driven; no Ion token.
+/* E8 Alignment Viewer v2.0.0 (seal candidate 4) — manifest-driven; no Ion token.
    Serve over HTTP: python -m http.server */
 
-const EDGE_TIERS = {           /* color by support count */
-  1:{rgb:[224/255,180/255, 92/255], width:1.3, boost:0   },   /* gold   */
-  2:{rgb:[239/255,233/255,216/255], width:2.6, boost:.30 },   /* platinum */
-  3:{rgb:[232/255,121/255,176/255], width:3.2, boost:.35 },   /* rose   */
+const EDGE_TIERS = {
+  1:{rgb:[224/255,180/255, 92/255], width:1.3, boost:0   },
+  2:{rgb:[239/255,233/255,216/255], width:2.6, boost:.30 },
+  3:{rgb:[232/255,121/255,176/255], width:3.2, boost:.35 },
 };
 const SITE_COLORS = {close:'#5fc98e', medium:'#e6c454', far:'#e06b5f'};
 const STATUS_LABEL = {
@@ -201,10 +348,16 @@ const STATUS_LABEL = {
   control:'Control — expected null',
 };
 
-let viewer, manifest, current = null, seedOrder = [];
-const seedCache = new Map();
+let manifest, seedOrder = [], bundleTag = '';
 let edgeAlpha = .65, sharedOnly = false, lightBasemap = false;
-let selLabel = null, selRing = null;
+let compareMode = false, activeSide = 'A';
+let syncSuspended = false;   /* dual-camera commands (reset/anchors) fly both
+   globes independently; sync resumes when the user next grabs a globe */
+const staleSeeds = new Set();
+const seedJson = new Map();          /* seed -> parsed data (fetch once) */
+
+/* per-side runtime: viewer, datasource cache, current rec, selection ents */
+const sides = { A:null, B:null };
 
 init().catch(err => {
   document.getElementById('loading').textContent =
@@ -213,22 +366,134 @@ init().catch(err => {
 
 async function init(){
   manifest = await getJSON('data/manifest.json');
+  bundleTag = manifest.provenance?.generated_utc || manifest.schema_version || '1';
   seedOrder = manifest.seeds.map(s => s.seed);
 
-  viewer = new Cesium.Viewer('globe', {
-    baseLayer: Cesium.ImageryLayer.fromProviderAsync(
-      Cesium.TileMapServiceImageryProvider.fromUrl(
-        Cesium.buildModuleUrl('Assets/Textures/NaturalEarthII'))),
+  sides.A = await makeSide('globe');
+
+  buildSeedOptions(document.getElementById('seed-select'));
+  buildSeedOptions(document.getElementById('cmp-select-A'));
+  buildSeedOptions(document.getElementById('cmp-select-B'));
+  wireControls();
+  wireSearch();
+  renderFooter();
+
+  const h = parseHash();
+  const first = seedOrder.includes(h.a) ? h.a : seedOrder[0];
+  document.getElementById('seed-select').value = String(first);
+  await showSeed(first, {fly:false});
+  document.getElementById('loading').remove();
+  resetView(true);
+
+  if(h.b && seedOrder.includes(h.b)) enterCompare(h.b);
+}
+
+/* ---------------- fetch layer ---------------- */
+async function getJSON(url){
+  const isManifest = !bundleTag;
+  const full = isManifest ? url
+    : url + (url.includes('?') ? '&' : '?') + 'v=' + encodeURIComponent(bundleTag);
+  const r = await fetch(full, isManifest ? {cache:'no-cache'} : undefined);
+  if(!r.ok) throw new Error(url + ' → HTTP ' + r.status);
+  return r.json();
+}
+
+function parseHash(){
+  let m = location.hash.match(/^#seed(\d+)-vs-(\d+)$/);
+  if(m) return {a:Number(m[1]), b:Number(m[2])};
+  m = location.hash.match(/^#seed(\d+)$/);
+  return {a: m ? Number(m[1]) : null, b:null};
+}
+function writeHash(){
+  if(!history.replaceState || !sides.A?.current) return;
+  const a = sides.A.current.entry.seed;
+  const b = compareMode && sides.B?.current ? sides.B.current.entry.seed : null;
+  history.replaceState(null, '', b ? `#seed${a}-vs-${b}` : `#seed${a}`);
+}
+
+/* ---------------- seed data (shared JSON cache) ---------------- */
+function pairKey(a,b){ return a < b ? a+'-'+b : b+'-'+a; }
+function tier(sup){ return sup >= 3 ? 3 : (sup >= 2 ? 2 : 1); }
+function edgeColor(t){
+  const c = EDGE_TIERS[t];
+  return new Cesium.Color(c.rgb[0], c.rgb[1], c.rgb[2],
+                          Math.min(1, edgeAlpha + c.boost));
+}
+
+async function fetchSeedJson(seed){
+  if(seedJson.has(seed)) return seedJson.get(seed);
+  const entry = manifest.seeds.find(s => s.seed === seed);
+  const [grid, sites, nulls] = await Promise.all([
+    getJSON(entry.files.grid), getJSON(entry.files.sites), getJSON(entry.files.null)]);
+
+  if(manifest.schema_version !== '1.0'){
+    const bad = sites.features.filter(
+      f => typeof f.properties.edges_supported !== 'number').length;
+    if(bad > 0){
+      console.warn(`seed ${seed}: ${bad}/${sites.features.length} sites lack ` +
+        `edges_supported but manifest is schema ${manifest.schema_version} — ` +
+        `stale cached data file. Hard-reload (Ctrl+Shift+R) to refetch.`);
+      staleSeeds.add(seed);
+    }
+  }
+
+  const sharedByPair = new Map();
+  for(const se of (entry.shared_edges || []))
+    sharedByPair.set(pairKey(se.vertex_pair[0], se.vertex_pair[1]), se);
+
+  const siteRows = sites.features.map(f => ({
+    name:f.properties.name, km:f.properties.dist_km, cls:f.properties['class'],
+    edges:(typeof f.properties.edges_supported === 'number') ? f.properties.edges_supported : null }));
+
+  const rec = { entry, grid, sites, null_rms:nulls.null_rms_deg, sharedByPair, siteRows };
+  seedJson.set(seed, rec);
+  return rec;
+}
+
+/* ---------------- per-side viewer ---------------- */
+function logTileErrors(provider, name){
+  /* Cesium does not console-error failed imagery tiles; make failures loud */
+  provider.errorEvent.addEventListener(e =>
+    console.warn(`imagery [${name}]:`, e?.message || e?.error || e));
+  return provider;
+}
+function darkProvider(){
+  /* CARTO dark_all — token-free with attribution, max zoom 19.
+     Landmass contrast at globe scale is intentionally very low; we lift the
+     layer's brightness (see tuneDarkLayer) so continents read at orbit. */
+  const retina = (window.devicePixelRatio || 1) > 1.5 ? '@2x' : '';
+  return logTileErrors(new Cesium.UrlTemplateImageryProvider({
+    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}' + retina + '.png',
+    subdomains: ['a','b','c','d'],
+    credit: '© OpenStreetMap contributors © CARTO',
+    maximumLevel: 19,
+  }), 'carto-dark');
+}
+function tuneDarkLayer(layer){
+  layer.brightness = 1.35;   /* make continents legible when zoomed out */
+  layer.contrast = 1.05;
+}
+function lightProvider(){
+  return logTileErrors(new Cesium.OpenStreetMapImageryProvider(
+    {url:'https://tile.openstreetmap.org/'}), 'osm-light');
+}
+
+async function makeSide(containerId){
+  const viewer = new Cesium.Viewer(containerId, {
+    baseLayer: new Cesium.ImageryLayer(lightBasemap ? lightProvider() : darkProvider()),
     baseLayerPicker:false, geocoder:false, timeline:false, animation:false,
     homeButton:false, sceneModePicker:false, navigationHelpButton:false,
     infoBox:false, selectionIndicator:false, fullscreenButton:false,
-    requestRenderMode:true, maximumRenderTimeChange:Infinity,
   });
+  const ctrl = viewer.scene.screenSpaceCameraController;
+  ctrl.inertiaSpin = .92; ctrl.inertiaTranslate = .92; ctrl.inertiaZoom = .88;
+  ctrl.minimumZoomDistance = 2_000;   /* near-surface inspection; collision detection prevents going underground */
+  viewer.resolutionScale = Math.min(window.devicePixelRatio || 1, 2);
+  if(!lightBasemap) tuneDarkLayer(viewer.imageryLayers.get(0));
   viewer.scene.globe.baseColor = Cesium.Color.fromCssColorString('#16202b');
   viewer.scene.skyAtmosphere.show = true;
 
-  /* selection affordances: name label + highlight ring (created once) */
-  selLabel = viewer.entities.add({ show:false,
+  const selLabel = viewer.entities.add({ show:false,
     label:{ font:'500 13px "IBM Plex Sans", sans-serif',
       fillColor:Cesium.Color.fromCssColorString('#0b1118'),
       showBackground:true,
@@ -237,53 +502,52 @@ async function init(){
       pixelOffset:new Cesium.Cartesian2(0,-18),
       verticalOrigin:Cesium.VerticalOrigin.BOTTOM,
       disableDepthTestDistance:Number.POSITIVE_INFINITY }});
-  selRing = viewer.entities.add({ show:false,
+  const selRing = viewer.entities.add({ show:false,
     point:{ pixelSize:15, color:Cesium.Color.TRANSPARENT,
+      heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
       outlineColor:Cesium.Color.fromCssColorString('#efe9d8'), outlineWidth:2 }});
 
-  buildSeedSelect();
-  wireControls();
-  renderFooter();
+  const side = { viewer, ds:new Map(), current:null, selLabel, selRing,
+                 key: containerId === 'globe' ? 'A' : 'B' };
 
-  const fromHash = parseHash();
-  const first = seedOrder.includes(fromHash) ? fromHash : seedOrder[0];
-  document.getElementById('seed-select').value = String(first);
-  await showSeed(first, {fly:false});
-  document.getElementById('loading').remove();
-  resetView(true);
+  const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+  handler.setInputAction(m => {
+    const picked = viewer.scene.pick(m.position);
+    if(picked && picked.id && picked.id.properties) select(side, picked.id);
+    else clearSelection(side);
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+  const el = document.getElementById(containerId);
+  el.addEventListener('pointerdown', () => { activeSide = side.key; syncSuspended = false; });
+  el.addEventListener('pointerenter', () => activeSide = side.key);
+  el.addEventListener('wheel', () => { activeSide = side.key; syncSuspended = false; }, {passive:true});
+
+  /* camera sync: master pushes to the other side every frame */
+  viewer.scene.preRender.addEventListener(() => {
+    if(!compareMode || syncSuspended || activeSide !== side.key) return;
+    const other = side.key === 'A' ? sides.B : sides.A;
+    if(other && other.viewer) copyCamera(viewer, other.viewer);
+  });
+
+  return side;
 }
 
-async function getJSON(url){
-  const r = await fetch(url);
-  if(!r.ok) throw new Error(url + ' → HTTP ' + r.status);
-  return r.json();
-}
-function parseHash(){
-  const m = location.hash.match(/^#seed(\d+)$/);
-  return m ? Number(m[1]) : null;
+function copyCamera(src, dst){
+  dst.camera.setView({
+    destination: src.camera.positionWC,
+    orientation: { heading:src.camera.heading, pitch:src.camera.pitch, roll:src.camera.roll },
+  });
 }
 
-/* ---------------- seed data ---------------- */
-function tier(sup){ return sup >= 3 ? 3 : (sup >= 2 ? 2 : 1); }
-function pairKey(a,b){ return a < b ? a+'-'+b : b+'-'+a; }
-function edgeColor(t){
-  const c = EDGE_TIERS[t];
-  return new Cesium.Color(c.rgb[0], c.rgb[1], c.rgb[2],
-                          Math.min(1, edgeAlpha + c.boost));
-}
-
-async function loadSeed(seed){
-  if(seedCache.has(seed)) return seedCache.get(seed);
-  const entry = manifest.seeds.find(s => s.seed === seed);
-  const [grid, sites, nulls] = await Promise.all([
-    getJSON(entry.files.grid), getJSON(entry.files.sites), getJSON(entry.files.null)]);
-
-  const sharedByPair = new Map();
-  for(const se of (entry.shared_edges || []))
-    sharedByPair.set(pairKey(se.vertex_pair[0], se.vertex_pair[1]), se);
+async function getRec(side, seed){
+  if(side.ds.has(seed)){
+    const cached = side.ds.get(seed);
+    return { ...seedJson.get(seed), gridDS:cached.gridDS, sitesDS:cached.sitesDS };
+  }
+  const data = await fetchSeedJson(seed);
 
   const gridDS = new Cesium.CustomDataSource('grid-' + seed);
-  const ef = grid.features.find(f => f.properties.kind === 'grid_edges');
+  const ef = data.grid.features.find(f => f.properties.kind === 'grid_edges');
   const lines = ef.geometry.coordinates, pairs = ef.properties.pairs,
         support = ef.properties.support_counts;
   for(let i = 0; i < lines.length; i++){
@@ -298,18 +562,17 @@ async function loadSeed(seed){
         material: new Cesium.ColorMaterialProperty(edgeColor(t)),
       },
       properties:{ kind:'edge', tier:t, support:support[i], pair:pairs[i],
-        sharedInfo: t >= 2 ? (sharedByPair.get(pairKey(pairs[i][0], pairs[i][1])) || null) : null },
+        sharedInfo: t >= 2 ? (data.sharedByPair.get(pairKey(pairs[i][0], pairs[i][1])) || null) : null },
     });
   }
 
-  /* sites: depth-tested (occluded by the globe's far side); tiny height lift
-     avoids z-fighting with the ellipsoid surface */
   const sitesDS = new Cesium.CustomDataSource('sites-' + seed);
-  for(const f of sites.features){
+  for(const f of data.sites.features){
     const p = f.properties, [lon, lat] = f.geometry.coordinates;
     sitesDS.entities.add({
-      position: Cesium.Cartesian3.fromDegrees(lon, lat, 4000),
+      position: Cesium.Cartesian3.fromDegrees(lon, lat),
       point:{ pixelSize:7,
+        heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
         color:Cesium.Color.fromCssColorString(SITE_COLORS[p['class']] || '#ccc'),
         outlineColor:Cesium.Color.fromCssColorString('#0b1118').withAlpha(.9),
         outlineWidth:1.5,
@@ -320,37 +583,95 @@ async function loadSeed(seed){
   }
 
   gridDS.show = sitesDS.show = false;
-  await viewer.dataSources.add(gridDS);
-  await viewer.dataSources.add(sitesDS);
-  const rec = { entry, gridDS, sitesDS, null_rms:nulls.null_rms_deg };
-  seedCache.set(seed, rec);
+  await side.viewer.dataSources.add(gridDS);
+  await side.viewer.dataSources.add(sitesDS);
+  side.ds.set(seed, {gridDS, sitesDS});
+  return { ...data, gridDS, sitesDS };
+}
+
+async function setSideSeed(side, seed){
+  const rec = await getRec(side, seed);
+  if(side.current && side.current.gridDS !== rec.gridDS){
+    side.current.gridDS.show = false; side.current.sitesDS.show = false;
+  }
+  side.current = rec;
+  rec.gridDS.show = true; rec.sitesDS.show = true;
+  applyEdgeStyle(side);
+  clearSelection(side);
   return rec;
 }
 
-/* ---------------- display ---------------- */
+/* ---------------- side A (main) ---------------- */
 async function showSeed(seed, opts = {}){
-  const rec = await loadSeed(seed);
-  if(current && current !== rec){ current.gridDS.show = false; current.sitesDS.show = false; }
-  current = rec;
-  rec.gridDS.show = true; rec.sitesDS.show = true;
-  applyEdgeStyle();
+  const rec = await setSideSeed(sides.A, seed);
   renderPanel(rec);
-  clearSelection();
-  if(history.replaceState) history.replaceState(null, '', '#seed' + seed);
-  if(opts.fly !== false) flyToAnchor();
-  viewer.scene.requestRender();
+  populateSearch();
+  writeHash();
+  if(compareMode) renderCard('A');
+  if(opts.fly !== false && !compareMode) flyToAnchor();
 }
 
-function applyEdgeStyle(){
-  if(!current) return;
-  for(const e of current.gridDS.entities.values){
+function applyEdgeStyle(side){
+  if(!side || !side.current) return;
+  for(const e of side.current.gridDS.entities.values){
     const t = e.properties.tier.getValue();
     e.show = sharedOnly ? t >= 2 : true;
     e.polyline.material = new Cesium.ColorMaterialProperty(edgeColor(t));
   }
-  viewer.scene.requestRender();
+}
+function applyEdgeStyleAll(){ applyEdgeStyle(sides.A); applyEdgeStyle(sides.B); }
+
+/* ---------------- compare mode ---------------- */
+async function enterCompare(seedB){
+  if(compareMode) return;
+  document.body.classList.add('compare');
+  compareMode = true;
+  if(!sides.B){
+    sides.B = await makeSide('globeB');
+    if(lightBasemap) setBasemap(sides.B.viewer, true);
+  }
+  sides.B.viewer.useDefaultRenderLoop = true;
+
+  const defaultB = seedB ??
+    (manifest.seeds.find(s => s.status === 'control')?.seed ?? seedOrder[1]);
+  document.getElementById('cmp-select-B').value = String(defaultB);
+  await setSideSeed(sides.B, defaultB);
+  renderCard('B');
+
+  document.getElementById('cmp-select-A').value = String(sides.A.current.entry.seed);
+  renderCard('A');
+
+  copyCamera(sides.A.viewer, sides.B.viewer);
+  activeSide = 'A';
+  syncSuspended = false;
+  document.getElementById('basemap-toggle-cmp').textContent =
+    lightBasemap ? 'Basemap: Light' : 'Basemap: Dark';
+  writeHash();
 }
 
+function exitCompare(){
+  if(!compareMode) return;
+  compareMode = false;
+  document.body.classList.remove('compare');
+  if(sides.B) sides.B.viewer.useDefaultRenderLoop = false;   /* pause hidden globe */
+  writeHash();
+}
+
+function renderCard(key){
+  const side = sides[key];
+  if(!side || !side.current) return;
+  const s = side.current.entry, st = s.stats;
+  const badge = document.getElementById('cmp-badge-' + key);
+  badge.textContent = STATUS_LABEL[s.status];
+  badge.className = 'badge ' + s.status;
+  const k = side.current.null_rms.filter(v => v <= st.real_rms_deg).length;
+  document.getElementById('cmp-stats-' + key).innerHTML =
+    `RMS <b>${st.real_rms_deg.toFixed(4)}°</b> · null ${st.null_rms_mean_deg.toFixed(4)}°<br>` +
+    `p = <b>${st.p_value.toFixed(4)}</b> · <b>${k}</b>/${st.n_trials} nulls beat it`;
+  drawHistogram(side.current, document.getElementById('cmp-hist-' + key));
+}
+
+/* ---------------- main panel ---------------- */
 function renderPanel(rec){
   const s = rec.entry, st = s.stats;
 
@@ -393,14 +714,13 @@ function renderPanel(rec){
   const row = document.getElementById('shared-row');
   row.hidden = !(c.shared2 > 0);
   if(row.hidden && sharedOnly){ sharedOnly = false;
-    document.getElementById('shared-toggle').checked = false; applyEdgeStyle(); }
+    document.getElementById('shared-toggle').checked = false; applyEdgeStyleAll(); }
   document.querySelector('#shared-row label').textContent =
     `Show shared edges only (${c.shared2})`;
 
-  drawHistogram(rec);
+  drawHistogram(rec, document.getElementById('hist'));
+  renderTable(rec);
 
-  /* "how rare is this" — derived from the raw null trials; reproduces
-     the reported Monte-Carlo p = (k+1)/(n+1) exactly */
   const k = rec.null_rms.filter(v => v <= st.real_rms_deg).length;
   document.getElementById('beat-note').innerHTML =
     `<b>${k} of ${st.n_trials}</b> search-optimised random rotations matched or beat the real RMS.`;
@@ -413,8 +733,8 @@ function renderPanel(rec){
 }
 
 /* ---------------- histogram ---------------- */
-function drawHistogram(rec){
-  const cv = document.getElementById('hist'), ctx = cv.getContext('2d');
+function drawHistogram(rec, cv){
+  const ctx = cv.getContext('2d');
   const W = cv.width, H = cv.height, padL = 8, padR = 8, padT = 26, padB = 30;
   ctx.clearRect(0, 0, W, H);
 
@@ -450,9 +770,218 @@ function drawHistogram(rec){
   ctx.fillText(hiTxt, W - padR - ctx.measureText(hiTxt).width, H - 8);
 }
 
+/* ---------------- distance table ---------------- */
+const tableSort = { key:'km', dir:1 };
+let tableFilter = '';
+
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function renderTable(rec){
+  let rows = rec.siteRows.slice();
+  const total = rows.length;
+  if(tableFilter)
+    rows = rows.filter(r => r.name.toLowerCase().includes(tableFilter));
+  const hasEdges = rec.siteRows.some(r => r.edges !== null);
+
+  const cols = [
+    {key:'name',  label:'Site',  cls:'c-name'},
+    {key:'km',    label:'km',    cls:'c-km'},
+    {key:'cls',   label:'●',     cls:'c-cls', title:'Class (close / medium / far)'},
+  ];
+  if(hasEdges) cols.push({key:'edges', label:'Edges', cls:'c-edges', title:'Supported edges within tolerance'});
+
+  const clsRank = {close:0, medium:1, far:2};
+  rows.sort((a, b) => {
+    let va = a[tableSort.key], vb = b[tableSort.key];
+    if(tableSort.key === 'cls'){ va = clsRank[va]; vb = clsRank[vb]; }
+    const c = (typeof va === 'string') ? va.localeCompare(vb) : va - vb;
+    return c * tableSort.dir || a.name.localeCompare(b.name);
+  });
+
+  document.getElementById('dtable-head').innerHTML = cols.map(c =>
+    `<th class="${c.cls}" data-key="${c.key}"${c.title ? ` title="${c.title}"` : ''}>${c.label}` +
+    (tableSort.key === c.key ? `<span class="arrow">${tableSort.dir > 0 ? '▲' : '▼'}</span>` : '') +
+    `</th>`).join('');
+
+  document.getElementById('dtable-body').innerHTML = rows.map(r =>
+    `<tr data-name="${esc(r.name)}">` +
+    `<td title="${esc(r.name)}">${esc(r.name)}</td>` +
+    `<td class="num">${r.km.toFixed(2)}</td>` +
+    `<td title="${r.cls}"><i class="dot" style="background:var(--${r.cls})"></i></td>` +
+    (hasEdges ? `<td class="num">${r.edges ?? ''}</td>` : '') +
+    `</tr>`).join('');
+
+  document.getElementById('dtable-count').textContent =
+    (tableFilter ? `${rows.length} of ${total}` : `${total}`) +
+    (staleSeeds.has(rec.entry.seed) ? ' ⚠ stale data — hard-reload' : '');
+}
+
+document.getElementById('dtable-head').addEventListener('click', e => {
+  const th = e.target.closest('th'); if(!th || !sides.A?.current) return;
+  const key = th.dataset.key;
+  if(tableSort.key === key) tableSort.dir = -tableSort.dir;
+  else { tableSort.key = key; tableSort.dir = 1; }
+  renderTable(sides.A.current);
+});
+
+document.getElementById('dtable-body').addEventListener('click', e => {
+  const tr = e.target.closest('tr'); if(!tr) return;
+  searchSite(sides.A, tr.dataset.name);
+});
+
+document.getElementById('dtable-filter').addEventListener('input', e => {
+  tableFilter = e.target.value.trim().toLowerCase();
+  if(sides.A?.current) renderTable(sides.A.current);
+});
+
+function highlightTableRow(name){
+  const body = document.getElementById('dtable-body');
+  let found = null;
+  for(const tr of body.children){
+    const hit = tr.dataset.name === name;
+    tr.classList.toggle('sel', hit);
+    if(hit) found = tr;
+  }
+  if(found && document.getElementById('dtable-block').open)
+    found.scrollIntoView({block:'nearest',
+      behavior: reduceMotion() ? 'auto' : 'smooth'});
+}
+
+/* ---------------- site search ---------------- */
+function wireSearch(){
+  const bind = (id, sideKey) => {
+    const input = document.getElementById(id);
+    const go = (q) => { const v = (q ?? input.value).trim();
+      if(v) searchSite(sides[sideKey], v, id === 'site-search' ? null : input); };
+    input.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); go(); } });
+    attachAutocomplete(input, go);
+  };
+  bind('site-search', 'A');
+  bind('cmp-search-A', 'A');
+  bind('cmp-search-B', 'B');
+}
+
+let catalogNames = [];
+function populateSearch(){
+  if(catalogNames.length || !sides.A?.current) return;
+  catalogNames = sides.A.current.siteRows
+    .map(r => r.name).sort((a, b) => a.localeCompare(b));
+}
+
+/* custom autocomplete: <datalist> is unreliable/absent on mobile browsers */
+function attachAutocomplete(input, onPick){
+  const list = document.createElement('div');
+  list.className = 'ac-list';
+  input.insertAdjacentElement('afterend', list);
+  const hide = () => { list.innerHTML = ''; list.style.display = 'none'; };
+  const show = () => {
+    const q = input.value.trim().toLowerCase();
+    if(!q){ hide(); return; }
+    const matches = catalogNames.filter(n => n.toLowerCase().includes(q)).slice(0, 8);
+    if(!matches.length){ hide(); return; }
+    list.innerHTML = matches.map(n => `<button type="button">${esc(n)}</button>`).join('');
+    list.style.display = 'block';
+    for(const b of list.children)
+      b.addEventListener('pointerdown', e => {      /* before input blur */
+        e.preventDefault();
+        input.value = b.textContent;
+        hide(); onPick(b.textContent);
+      });
+  };
+  input.addEventListener('input', show);
+  input.addEventListener('focus', show);
+  input.addEventListener('blur', () => setTimeout(hide, 150));
+  input.addEventListener('keydown', e => { if(e.key === 'Escape') hide(); });
+}
+
+function searchSite(side, query, inputEl){
+  const hint = document.getElementById('search-hint');
+  if(!side?.current) return;
+  const q = query.toLowerCase();
+  const ents = side.current.sitesDS.entities.values;
+  let ent = ents.find(e => e.properties.name && e.properties.name.getValue().toLowerCase() === q)
+         || ents.find(e => e.properties.name && e.properties.name.getValue().toLowerCase().includes(q));
+  if(!ent){
+    if(side.key === 'A' && !inputEl) hint.textContent = 'No site matches "' + query + '".';
+    if(inputEl){ inputEl.classList.add('nomatch');
+      setTimeout(() => inputEl.classList.remove('nomatch'), 1500); }
+    return;
+  }
+  if(side.key === 'A' && !inputEl) hint.textContent = '';
+  activeSide = side.key;                     /* the flying globe leads the sync */
+  const pos = ent.position.getValue(Cesium.JulianDate.now());
+  const carto = Cesium.Cartographic.fromCartesian(pos);
+  side.viewer.camera.flyTo({
+    destination: Cesium.Cartesian3.fromRadians(
+      carto.longitude, carto.latitude, 2_200_000),
+    duration: reduceMotion() ? 0 : 1.4,
+  });
+  select(side, ent);
+}
+
+/* ---------------- selection ---------------- */
+let mirroring = false;
+function mirrorTo(side, name){
+  /* reflect a site selection onto the other globe with THAT seed's distance */
+  const other = side.key === 'A' ? sides.B : sides.A;
+  if(!compareMode || mirroring || !other?.current) return;
+  mirroring = true;
+  const twin = other.current.sitesDS.entities.values.find(
+    e => e.properties.name && e.properties.name.getValue() === name);
+  if(twin) select(other, twin); else clearSelection(other);
+  mirroring = false;
+}
+
+function select(side, entity){
+  const props = entity.properties;
+  const el = document.getElementById('selection');
+  const kind = props.kind.getValue();
+  if(kind === 'site'){
+    const name = props.name.getValue(), km = props.dist_km.getValue();
+    if(side.key === 'A'){
+      el.innerHTML = `<b>${name}</b><br>` +
+        `<span class="dim">${km.toFixed(2)} km (${props.dist_deg.getValue().toFixed(4)}°) ` +
+        `from nearest E8 edge · ${props.cls.getValue()}</span>`;
+      highlightTableRow(name);
+    }
+    const pos = entity.position.getValue(Cesium.JulianDate.now());
+    side.selLabel.position = pos; side.selRing.position = pos;
+    side.selLabel.label.text = `${name} · ${km.toFixed(1)} km`;
+    side.selLabel.show = side.selRing.show = true;
+    mirrorTo(side, name);
+  } else if(kind === 'edge'){
+    side.selLabel.show = side.selRing.show = false;
+    if(side.key === 'A') highlightTableRow(null);
+    const info = props.sharedInfo.getValue();
+    if(side.key === 'A'){
+      el.innerHTML = info
+        ? `<b>Shared edge</b> — passes near ${info.support_n} sites:` +
+          `<ul>` + info.site_names.map(n => `<li>${esc(n)}</li>`).join('') + `</ul>`
+        : `<b>Edge</b> <span class="dim">— supports 1 site within tolerance.</span>`;
+    } else if(info){
+      side.selLabel.position = entity.polyline.positions.getValue(Cesium.JulianDate.now())[0];
+      side.selLabel.label.text = info.site_names.join(' ↔ ');
+      side.selLabel.show = true;
+    }
+  }
+}
+function clearSelection(side){
+  if(compareMode && !mirroring){
+    mirroring = true;
+    const other = side.key === 'A' ? sides.B : sides.A;
+    if(other){ other.selLabel.show = false; other.selRing.show = false; }
+    mirroring = false;
+  }
+  if(side.key === 'A'){
+    document.getElementById('selection').innerHTML =
+      '<span class="dim">Click a site or a shared edge on the globe.</span>';
+    highlightTableRow(null);
+  }
+  side.selLabel.show = false; side.selRing.show = false;
+}
+
 /* ---------------- UI wiring ---------------- */
-function buildSeedSelect(){
-  const sel = document.getElementById('seed-select');
+function buildSeedOptions(sel){
   const groups = [
     ['BH-significant', s => s.status === 'bh_significant'],
     ['Not significant', s => s.status === 'elite_nonsignificant'],
@@ -470,108 +999,139 @@ function buildSeedSelect(){
     }
     sel.appendChild(og);
   }
-  sel.addEventListener('change', e => showSeed(Number(e.target.value)));
 }
 
 function cycleSeed(step){
-  const cur = current ? current.entry.seed : seedOrder[0];
+  const cur = sides.A?.current ? sides.A.current.entry.seed : seedOrder[0];
   const i = seedOrder.indexOf(cur);
   const next = seedOrder[(i + step + seedOrder.length) % seedOrder.length];
   document.getElementById('seed-select').value = String(next);
+  document.getElementById('cmp-select-A').value = String(next);
   showSeed(next);
 }
 
 function wireControls(){
+  document.getElementById('seed-select').addEventListener('change',
+    e => { document.getElementById('cmp-select-A').value = e.target.value;
+           showSeed(Number(e.target.value)); });
+  document.getElementById('cmp-select-A').addEventListener('change',
+    e => { document.getElementById('seed-select').value = e.target.value;
+           showSeed(Number(e.target.value)); });
+  document.getElementById('cmp-select-B').addEventListener('change',
+    async e => { await setSideSeed(sides.B, Number(e.target.value));
+                 renderCard('B'); writeHash(); });
+
+  document.getElementById('compare-btn').addEventListener('click', () => enterCompare(null));
+  for(const b of document.querySelectorAll('.cmp-expand'))
+    b.addEventListener('click', () =>
+      document.getElementById(b.dataset.card).classList.toggle('expanded'));
+  document.getElementById('compare-exit').addEventListener('click', exitCompare);
+  document.getElementById('cmp-reset').addEventListener('click', cmpResetBoth);
+  document.getElementById('cmp-anchors').addEventListener('click', cmpFlyAnchors);
+  document.getElementById('basemap-toggle-cmp').addEventListener('click', toggleBasemap);
+
   document.getElementById('shared-toggle').addEventListener('change', e => {
-    sharedOnly = e.target.checked; applyEdgeStyle();
+    sharedOnly = e.target.checked; applyEdgeStyleAll();
   });
   document.getElementById('opacity').addEventListener('input', e => {
-    edgeAlpha = Number(e.target.value) / 100; applyEdgeStyle();
+    edgeAlpha = Number(e.target.value) / 100; applyEdgeStyleAll();
   });
   document.getElementById('reset-view').addEventListener('click', () => resetView(false));
   document.getElementById('fly-anchor').addEventListener('click', () => flyToAnchor());
   document.getElementById('basemap-toggle').addEventListener('click', toggleBasemap);
 
-  /* keyboard: arrows cycle seeds (not while typing in a form control) */
   document.addEventListener('keydown', e => {
     if(['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName)) return;
     if(e.key === 'ArrowRight'){ e.preventDefault(); cycleSeed(1); }
     if(e.key === 'ArrowLeft'){ e.preventDefault(); cycleSeed(-1); }
-  });
-  window.addEventListener('hashchange', () => {
-    const s = parseHash();
-    if(s && seedOrder.includes(s) && (!current || current.entry.seed !== s)){
-      document.getElementById('seed-select').value = String(s);
-      showSeed(s);
-    }
+    if(e.key === 'Escape' && compareMode){ exitCompare(); }
   });
 
-  const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
-  handler.setInputAction(m => {
-    const picked = viewer.scene.pick(m.position);
-    if(picked && picked.id && picked.id.properties) select(picked.id);
-    else clearSelection();
-  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+  window.addEventListener('hashchange', async () => {
+    const h = parseHash();
+    if(h.a && seedOrder.includes(h.a) &&
+       (!sides.A.current || sides.A.current.entry.seed !== h.a)){
+      document.getElementById('seed-select').value = String(h.a);
+      await showSeed(h.a);
+    }
+    if(h.b && seedOrder.includes(h.b)){
+      if(!compareMode) await enterCompare(h.b);
+      else if(sides.B.current?.entry.seed !== h.b){
+        document.getElementById('cmp-select-B').value = String(h.b);
+        await setSideSeed(sides.B, h.b); renderCard('B');
+      }
+    } else if(!h.b && compareMode) exitCompare();
+  });
 }
 
-function select(entity){
-  const props = entity.properties;
-  const el = document.getElementById('selection');
-  const kind = props.kind.getValue();
-  if(kind === 'site'){
-    const name = props.name.getValue(), km = props.dist_km.getValue();
-    el.innerHTML = `<b>${name}</b><br>` +
-      `<span class="dim">${km.toFixed(2)} km (${props.dist_deg.getValue().toFixed(4)}°) ` +
-      `from nearest E8 edge · ${props.cls.getValue()}</span>`;
-    const pos = entity.position.getValue(Cesium.JulianDate.now());
-    selLabel.position = pos; selRing.position = pos;
-    selLabel.label.text = `${name} · ${km.toFixed(1)} km`;
-    selLabel.show = selRing.show = true;
-  } else if(kind === 'edge'){
-    selLabel.show = selRing.show = false;
-    const info = props.sharedInfo.getValue();
-    if(info){
-      el.innerHTML = `<b>Shared edge</b> — passes near ${info.support_n} sites:` +
-        `<ul>` + info.site_names.map(n => `<li>${n}</li>`).join('') + `</ul>`;
-    } else {
-      el.innerHTML = `<b>Edge</b> <span class="dim">— supports 1 site within tolerance.</span>`;
-    }
+/* ---------------- compare-bar commands ---------------- */
+function cmpResetBoth(){
+  syncSuspended = true;
+  const dest = Cesium.Cartesian3.fromDegrees(10, 20, 24_000_000);
+  const dur = reduceMotion() ? 0 : 1.2;
+  for(const key of ['A','B']){
+    const side = sides[key];
+    if(side) side.viewer.camera.flyTo({destination:dest, duration:dur,
+      complete:() => { syncSuspended = false; }});   /* identical views: seamless */
   }
-  viewer.scene.requestRender();
 }
-function clearSelection(){
-  document.getElementById('selection').innerHTML =
-    '<span class="dim">Click a site or a shared edge on the globe.</span>';
-  if(selLabel){ selLabel.show = false; selRing.show = false; viewer.scene.requestRender(); }
+function cmpFlyAnchors(){
+  /* each globe flies to its own seed's lock point — views diverge, so sync
+     stays suspended until the user grabs a globe (pointerdown resumes it) */
+  syncSuspended = true;
+  const dur = reduceMotion() ? 0 : 1.2;
+  for(const key of ['A','B']){
+    const side = sides[key];
+    if(!side?.current) continue;
+    const o = side.current.entry.orientation;
+    side.viewer.camera.flyTo({
+      destination: Cesium.Cartesian3.fromDegrees(o.lon, o.lat, 22_000_000),
+      duration: dur});
+  }
 }
 
 /* ---------------- camera & basemap ---------------- */
 function reduceMotion(){ return matchMedia('(prefers-reduced-motion: reduce)').matches; }
 function flyToAnchor(){
-  if(!current) return;
-  const o = current.entry.orientation;
-  viewer.camera.flyTo({
+  const side = sides.A;
+  if(!side?.current) return;
+  const o = side.current.entry.orientation;
+  side.viewer.camera.flyTo({
     destination: Cesium.Cartesian3.fromDegrees(o.lon, o.lat, 22_000_000),
     duration: reduceMotion() ? 0 : 1.2,
   });
 }
 function resetView(instant){
-  viewer.camera.flyTo({
+  sides.A.viewer.camera.flyTo({
     destination: Cesium.Cartesian3.fromDegrees(10, 20, 24_000_000),
     duration: (instant || reduceMotion()) ? 0 : 1.2,
   });
 }
-async function toggleBasemap(){
-  lightBasemap = !lightBasemap;
-  document.getElementById('basemap-toggle').textContent =
-    lightBasemap ? 'Dark basemap' : 'Light basemap';
-  const provider = lightBasemap
-    ? new Cesium.OpenStreetMapImageryProvider({url:'https://tile.openstreetmap.org/'})
-    : await Cesium.TileMapServiceImageryProvider.fromUrl(
-        Cesium.buildModuleUrl('Assets/Textures/NaturalEarthII'));
+function setBasemap(viewer, light){
   viewer.imageryLayers.removeAll();
-  viewer.imageryLayers.addImageryProvider(provider);
-  viewer.scene.requestRender();
+  const layer = viewer.imageryLayers.addImageryProvider(
+    light ? lightProvider() : darkProvider());
+  if(!light) tuneDarkLayer(layer);
+}
+/* re-entrancy guard: rapid taps (mobile) previously interleaved async layer
+   swaps, tangling UI state and actual imagery */
+let basemapBusy = false;
+function toggleBasemap(){
+  if(basemapBusy) return;
+  basemapBusy = true;
+  const btn = document.getElementById('basemap-toggle');
+  btn.disabled = true;
+  lightBasemap = !lightBasemap;
+  const label = lightBasemap ? 'Basemap: Light' : 'Basemap: Dark';
+  btn.textContent = label;
+  document.getElementById('basemap-toggle-cmp').textContent = label;
+  try{
+    setBasemap(sides.A.viewer, lightBasemap);
+    if(sides.B) setBasemap(sides.B.viewer, lightBasemap);
+  } finally {
+    basemapBusy = false;
+    btn.disabled = false;
+  }
 }
 
 function renderFooter(){
