@@ -458,12 +458,16 @@ function logTileErrors(provider, name){
   return provider;
 }
 function darkProvider(){
-  /* CARTO dark_all — token-free with attribution, max zoom 19.
+  /* CARTO dark_all raster basemap.
+     Uses a public browser API key restricted to the GitHub Pages domain.
      Landmass contrast at globe scale is intentionally very low; we lift the
      layer's brightness (see tuneDarkLayer) so continents read at orbit. */
+  const CARTO_BASEMAP_KEY = 'cb1_3mg2_1_20175b7097f342d821fa8eb1';
   const retina = (window.devicePixelRatio || 1) > 1.5 ? '@2x' : '';
+
   return logTileErrors(new Cesium.UrlTemplateImageryProvider({
-    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}' + retina + '.png',
+    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}' +
+         retina + '.png?key=' + encodeURIComponent(CARTO_BASEMAP_KEY),
     subdomains: ['a','b','c','d'],
     credit: '© OpenStreetMap contributors © CARTO',
     maximumLevel: 19,
