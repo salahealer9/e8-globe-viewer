@@ -17,12 +17,12 @@ keywords:
 license:
   - MIT
   - CC-BY-4.0
-version: 2.0.0
-date-released: "2026-07-18"
+version: 2.0.1
+date-released: "2026-09-15"
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.21429524
-    description: "Zenodo deposit for version 2.0.0"
+    value: 10.5281/zenodo.22776337
+    description: "Zenodo deposit for version 2.0.1"
   - type: doi
     value: 10.5281/zenodo.21419572
     description: "Zenodo concept DOI (resolves to the latest version)"

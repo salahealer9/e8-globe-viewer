@@ -72,10 +72,14 @@ python -m http.server
 (Opening `index.html` directly via `file://` will not work — browsers block
 `fetch()` of local data files.)
 
-No API keys or tokens are required. Basemap imagery streams from CARTO (dark,
-© OpenStreetMap contributors © CARTO) and OpenStreetMap (light); an offline
-imagery fallback is not bundled, so a network connection is needed for the
-basemap (CesiumJS itself is also loaded from CDN).
+The dark basemap uses CARTO raster tiles with a public browser API key restricted
+to the deployed website origin. The light basemap uses OpenStreetMap tiles.
+No Cesium ion token is required.
+
+Basemap imagery is streamed from CARTO
+(dark, © OpenStreetMap contributors © CARTO) and OpenStreetMap (light).
+An offline imagery fallback is not bundled, so a network connection is required
+for the basemap. CesiumJS itself is also loaded from CDN.
 
 ## License
 
